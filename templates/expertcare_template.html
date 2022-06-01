@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ExpertCare Medicine Change Request</title>
+    <base href="./">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+</head>
+<style>
+    p {
+        font-size: 12px;
+    }
+
+    .user {
+        padding-bottom: 10px;
+    }
+
+    .userN {
+        font-size: 10px;
+        padding-left: 15px;
+    }
+
+    .ago {
+        font-size: 9px;
+        color: #ccc;
+    }
+
+    .userIcon {
+        width: 25px !important;
+        margin-left: 18px;
+    }
+
+    /* // ----------- updates ------------ //
+// -------------------------------- // */
+    span {
+        font-size: 12px;
+    }
+
+    h6 {
+        font-size: 14px;
+        font-weight: normal;
+        color: #628c46;
+    }
+
+    .update {
+        margin-top: 10px;
+    }
+
+    .updateHead {
+        padding-top: 10px;
+    }
+
+    .updateTxt {
+        font-size: 9px;
+        font-weight: 600;
+    }
+
+    .updateTime {
+        font-size: 8px;
+        color: #333;
+    }
+
+    .updateDetail {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px 15px;
+        color: #999;
+    }
+
+    .updateDetail h5 {
+        border-top: 1px solid #cccccc;
+        font-size: 10px;
+        font-weight: 500;
+        padding-top: 15px;
+    }
+
+    .updateDetail p {
+        font-size: 10px !important;
+    }
+
+    .favMenuIcon {
+        width: 35px;
+        height: 35px;
+    }
+
+
+    .customMenu .badge {
+
+        color: #628c46;
+        padding: 6px 4px 4px 4px;
+        height: 26px !important;
+        width: 26px !important;
+        font-size: 10px;
+        border-radius: 13px;
+        position: relative;
+        top: -55px;
+        left: -40px;
+    }
+
+    .heading-grey {
+
+        color: #585858;
+    }
+
+
+    p.MsoNormal,
+    li.MsoNormal,
+    div.MsoNormal {
+        margin-top: 0cm;
+        margin-right: 0cm;
+        margin-bottom: 0;
+        margin-left: 0cm;
+        line-height: 16px;
+        font-size: 14px;
+    }
+
+    .MsoChpDefault {
+        font-size: 10px;
+    }
+
+    .MsoPapDefault {
+        margin-bottom: 8.0pt;
+        line-height: 107%;
+    }
+
+    .MsoMarginLeft {
+        padding-left: 50px !important;
+        padding-right: 10px;
+        margin: 0;
+    }
+
+    tr {
+        vertical-align: top;
+    }
+
+    .borderDivider td:nth-child(2) {
+        border-left: 1px solid black;
+        padding-left: 20px;
+    }
+
+    .borderDivider p {
+        margin: 0;
+    }
+
+    .grey-bar td {
+        background-color: #ffffff;
+        padding: 0;
+        color: #000000;
+    }
+
+    .grey-bar p {
+        margin-bottom: 0;
+    }
+
+    .light-grey td {
+        background-color: #ffffff;
+        padding: 0;
+        border: 1px solid #ffffff;
+    }
+
+    .light-grey p {
+        margin-bottom: 0;
+    }
+
+    .light-bar td {
+        background-color: #ffffff;
+        padding: 0;
+        border: 1px solid #ffffff;
+    }
+
+    .light-bar p {
+        margin-bottom: 0;
+    }
+
+    .main-background {
+        background-color: #ffffff !important;
+    }
+
+    .col-xl-12>.card {
+        background-color: #ffffff !important;
+    }
+
+    .bg-primary {
+        background-color: #ffffff !important;
+    }
+
+    .listMenuIcon {
+        border-left: 3px solid transparent;
+        padding: 12px 15px 12px 12px !important;
+    }
+
+    .listMenuIcon a {
+        padding: 0 !important;
+    }
+
+    .nav-link.active {
+        border-left: 3px solid #4cb6ac;
+        background-color: #ffffff !important;
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+    }
+
+    .downloaderStatus {
+        margin: 0;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        margin-top: 8px !important;
+
+    }
+
+    /* // .box-height-calc{
+//     min-height: calc(100vh - 53px)!important;
+// }
+// .sticky-offset {
+//     margin-top: 53px!important;;
+// }
+// .fixed-left{
+//     position:fixed;
+// } */
+    body {
+        height: 100vh;
+        overflow: scroll;
+        font-family: verdana;
+    }
+
+    .sidebar {
+        padding-top: 48px;
+        min-height: 100%;
+        overflow: hidden;
+    }
+
+    .main {
+        padding-top: 56px;
+        min-height: calc(100vh) !important;
+        max-height: calc(100vh) !important;
+        padding-bottom: 20px;
+    }
+
+    .collapse.width {
+        width: 0;
+        max-width: 0;
+        height: 100%;
+        transition: max-width 0.3s linear;
+        display: block;
+        overflow: hidden;
+    }
+
+    .vh-100 {
+        min-height: 100vh;
+    }
+
+    .collapsing.width {
+        transition: max-width 0.7s linear;
+        width: 0% !important;
+        height: 100%;
+        max-width: 0% !important;
+        min-width: 0;
+        position: relative;
+        display: block;
+    }
+
+    .collapse.width.show {
+        transition: max-width 0.3s linear;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        min-width: 0;
+        position: relative;
+        display: block;
+    }
+
+    .nav-link {
+        color: #ccc;
+        font-size: 12px;
+        padding: 10px 6px;
+    }
+
+    .nav-link-left {
+        color: #ccc;
+
+        font-size: 12px;
+        padding: 0px 6px 0px 6px;
+        margin-top: 4px;
+    }
+
+    .nav-link-i {
+        font-size: 16px;
+        padding-top: 10px;
+    }
+
+    .nav-username {
+        font-size: 10px;
+        color: #999;
+        padding-top: 18px;
+    }
+
+    .menu-center a {
+        padding-top: 18px;
+        color: #333;
+    }
+
+    .bg-light {
+        background-color: #ffffff !important;
+    }
+
+    .selectedPatientBar_Expertcare {
+        display: block;
+        padding-top: 10px;
+        margin-bottom: 2px;
+        font-size: 10px !important;
+        padding-left: 1px;
+    }
+
+    .info {
+        margin-bottom: 2px;
+    }
+
+    .value {
+        font-weight: 600;
+    }
+
+    .blue-nav {
+        border-bottom: 3px solid #ffffff;
+    }
+
+    .col-45 {
+        width: 50px;
+    }
+
+    .col-65 {}
+
+    .bg-primary {
+        background-color: #ffffff !important;
+        color: #8d949e !important;
+    }
+
+    .btn-primary:active,
+    .btn-primary:visited,
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: #ffffff !important;
+    }
+
+    .icon-logo {
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        padding-top: 10px;
+        display: block;
+    }
+
+    ngb-progressbar {
+        margin-top: 5rem;
+        border-radius: 0 !important;
+    }
+
+    .progressbar {
+        margin: 0;
+        display: block;
+        position: absolute;
+        width: 100%;
+        /* // //    margin-left:45px;
+// //    margin-right:45px;
+//    text-align:center;
+// // margin:auto; */
+        bottom: 0;
+        border-radius: 0 !important;
+    }
+
+    .progressdiv {
+        min-height: 8px;
+        border-radius: 0 !important;
+    }
+
+    .expertcare_logo {
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+    }
+</style>
+
+<body id="rootbody">
+
+    <div class="row main-background">
+        <div class="col-xl-12">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-xs-12">
+                            <div class="text-xs text-blue mb-4 ">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                    style="margin:0 auto;padding:10px 30px">
+                                    <tr>
+                                        <!-- <td><img src="expertcare_logo.png" width="200px" height="auto"></td> -->
+                                        <td><img src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAU4AAABUCAIAAABiC0l3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4dpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDYuMC1jMDA2IDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6OGQ0NTM4MjMtOGJjYy00MTFiLWIwNmEtNmRiMjdiNWQ0NWQ0IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI0MjBDNEZBRDAxMTExRUI4QjcwREY1QzQ1NjY3NTM2IiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI0MjBDNEY5RDAxMTExRUI4QjcwREY1QzQ1NjY3NTM2IiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE3IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ODNhMDA2Y2YtMDViYy00YTE3LTg3ZmEtZWM3ZmNiNTRhOWU4IiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6OWMyN2JhOTctOTA3ZC0xMTdjLTkw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"
+                                                width="200px" height="auto"></td>
+                                        <td>
+                                            <p class="MsoNormal">
+                                                <span style="color:#628c46;">
+                                                    {{ site.name }}<br />
+                                                    {{ site.address }}<br />
+                                                    {{ site.telephone }}<br />
+                                                    {{ date }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="WordSection1">
+                        <div class="card border-left-info shadow  py-2">
+                            <div class="card-body">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                    style="margin:0 auto;padding:0 30px">
+                                    <tr class="light-grey">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">For Attention of {{ patient.callingName }}</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr class="light-grey">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">Medication Change Request for: </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="light-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">
+                                                <span style="color:#628c46;">
+                                                    {{ patient.callingName }}
+                                                    {{ patient.familyName }},
+                                                    {{ patient.nhsNumber }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="light-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">
+                                                <span style="color:#628c46;">
+                                                    {{ patient.dateOfBirth }}, {{ patient.gender }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="light-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">
+                                                <span style="color:#628c46;">
+                                                    {{ patient.telephoneHome }} {{ patient.telephoneMobile }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="light-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">
+                                                <span style="color:#628c46;">
+                                                    {{ patient.address }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="card border-left-info shadow  py-2">
+                            <div class="card-body">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                    style="margin:0 auto;padding:0 30px">
+
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal">
+                                                Please authorise the following changes to the above patient’s medication
+                                                following a Hypertension medicines review completed
+                                                on <span style="color:#628c46">*{{ date }}</span>:</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr class="grey-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">Stop the following medication: </p>
+                                        </td>
+                                    </tr>
+
+                                    {% for medStop in data.medicationStop %}
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal MsoMarginLeft">
+                                                <span lang=EN-US style="color:#628c46">
+                                                    {{ medStop.Name }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="card border-left-info shadow  py-2">
+                            <div class="card-body">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;padding:0 30px">
+                                    <tr class="grey-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">Start the following medication: </p>
+                                        </td>
+                                    </tr>
+
+                                    <!-- START MEDS -->
+
+                                    <tr class="borderDivider">
+                                        <td>
+                                            <p class="MsoNormal MsoMarginLeft">Medication</p>
+                                        </td>
+                                        <!-- <td style="min-width:200px">
+                                            <p class="MsoNormal">Dose</p>
+                                        </td> -->
+                                    </tr>
+
+                                    {% for medStart in data.medicationStart %}
+                                    <tr class="borderDivider">
+                                        <td>
+                                            <p class="MsoMarginLeft">
+                                                <span lang=EN-US style="color:#628c46">
+                                                    {{ medStart.Name }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <!-- <td>
+                                            <p style="color:#7030A0">[enter dosage]</p>
+                                        </td> -->
+                                    </tr>
+                                    {% endfor %}
+
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="card border-left-info shadow  py-2">
+                            <div class="card-body">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                    style="margin:0 auto;padding:0 30px">
+                                    <tr class="grey-bar">
+                                        <td colspan="2">
+                                            <p class="MsoNormal">Continue with the following medication: </p>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="borderDivider">
+                                        <td>
+                                            <p class="MsoNormal MsoMarginLeft">Medication</p>
+                                        </td>
+                                        <!-- <td style="min-width:200px">
+                                            <p class="MsoNormal">Dose</p>
+                                        </td> -->
+                                    </tr>
+
+                                    {% for medCon in data.medicationContinue %}
+                                    <tr class="borderDivider">
+                                        <td>
+                                            <p class="MsoMarginLeft">
+                                                <span lang=EN-US style="color:#628c46">
+                                                    {{ medCon.Name }}
+                                                </span>
+                                            </p>
+                                        </td>
+                                        <!-- <td>
+                                            <p style="color:#628c46">*[at same dosage]</p>
+                                        </td> -->
+                                    </tr>
+                                    {% endfor %}
+
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal">The patient should return in {{ appointmentInMonths }} months for a medication review.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal">Regards, </p>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>
+                                            <span lang=EN-US style="color:#628c46">{{ practitioner.fullName }} </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="">
+                                        <td>
+                                            <span lang=EN-US style="color:#628c46">{{ practitioner.role }} </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Row -->
+</body>
+
+</html>

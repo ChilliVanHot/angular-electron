@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>ExpertCare Medicine Change Request</title>
+	<base href="./">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+</head>
+<style>
+	.box {
+		border-style: solid;
+		border-color: #999999;
+		border-width: 1px;
+	}
+
+	body,
+	p,
+	div,
+	span,
+	table,
+	tr,
+	td {
+		font-family: Verdana;
+		font-size: 12px;
+		color: #333333;
+	}
+
+	p {
+		margin: 7px;
+	}
+
+	td {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+</style>
+
+<body>
+	<table cellspacing="0" cellpadding="0" width="100%">
+		<tbody>
+			<!-- <tr>
+			<td width="35%" colspan="6" valign="top">
+				<p style="color:lightgreen">
+					[todays date]
+				</p>
+			</td>
+			<td width="39%" colspan="5" valign="top">
+				<p>
+					ExpertCare Pathway [version number]
+				</p>
+			</td>
+			<td width="24%" colspan="3" valign="top">
+			</td>
+		</tr> -->
+
+			<tr>
+				<td width="100%">
+					<table class="box" cellspacing="0" cellpadding="0" width="100%">
+						<tr>
+							<td width="75%" colspan="11" valign="top">
+								<table border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td>
+												<p align="center">
+													Access to this application and any
+													information it contains is limited to
+													authorized users only. Legal action can be
+													taken against unauthorised use of, or
+													unauthorised access to this application
+													and/or any information it may contain,
+													including pursuant to Computer Misuse Act
+													1990. If you are an authorised user, by
+													proceeding to access and use this
+													application and / or the information it
+													contains, you are accepting ant terms of
+													use, notices and policies which are
+													contained or referenced within it or which
+													have otherwise been drawn to your attention
+													as an authorised user.
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td width="24%" colspan="3" valign="top">
+								<table border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td valign="top">
+												<p>
+													<strong style="color:red">TEST CHRISTOPHER!!! Official-Sensitive
+														Data</strong>
+												</p>
+												<p>
+													[date stamp] – [time stamp]
+												</p>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</td>
+
+			</tr>
+			<tr>
+				<td width="100%">
+					<table class="box" cellspacing="0" cellpadding="0" width="100%">
+						<tr>
+							<td width="11%" valign="top">
+								<p>
+									<strong>USER:</strong>
+								</p>
+							</td>
+							<td width="34%" colspan="6" valign="top">
+								<p>
+									[logged in user name]
+								</p>
+							</td>
+							<td width="11%" valign="top">
+								<p>
+									<strong>Role:</strong>
+								</p>
+							</td>
+							<td width="18%" colspan="3" valign="top">
+								<p>
+									[logged in user role]
+								</p>
+							</td>
+							<td width="24%" colspan="3" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="11%" valign="top">
+								<p>
+									<strong>PATIENT:</strong>
+								</p>
+							</td>
+							<td width="34%" colspan="6" valign="top">
+								<p>
+									[patient full name]
+								</p>
+							</td>
+							<td width="11%" valign="top">
+								<p>
+									<strong>NHS No:</strong>
+								</p>
+							</td>
+							<td width="18%" colspan="3" valign="top">
+								<p>
+									[patient NHS no.]
+								</p>
+							</td>
+							<td width="24%" colspan="3" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="11%" valign="top">
+							</td>
+							<td width="34%" colspan="6" valign="top">
+							</td>
+							<td width="11%" valign="top">
+							</td>
+							<td width="18%" colspan="3" valign="top">
+							</td>
+							<td width="24%" colspan="3" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="11%" valign="top">
+								<p>
+									<strong>STATUS:</strong>
+								</p>
+							</td>
+							<td width="17%" colspan="3" valign="top">
+								<p>
+									[BP status]
+								</p>
+							</td>
+							<td width="7%" valign="top">
+								<p>
+									[BP reading]
+								</p>
+							</td>
+							<td width="23%" colspan="4" valign="top">
+								<p>
+									[BP reading date]
+								</p>
+							</td>
+							<td width="8%" valign="top">
+								<p>
+									[gender]
+								</p>
+							</td>
+							<td width="18%" colspan="2" valign="top">
+								<p>
+									[ethnicity group]
+								</p>
+							</td>
+							<td width="13%" colspan="2" valign="top">
+								<p>
+									[age group]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28%" colspan="4" valign="top">
+							</td>
+							<td width="71%" colspan="10" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="28%" colspan="4" valign="top">
+								<p>
+									Excluded Comorbidity
+								</p>
+							</td>
+							<td width="71%" colspan="10" valign="top">
+								<p>
+									Reasons for previous exclusion from decision process
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28%" colspan="4" valign="top">
+								<p>
+									[excluded comorbidities]
+								</p>
+							</td>
+							<td width="71%" colspan="10" valign="top">
+								<p>
+									[reason for previous exclusion]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28%" colspan="4" valign="top">
+								<p>
+									Relevant Comorbidity
+								</p>
+							</td>
+							<td width="71%" colspan="10" valign="top">
+								<p>
+									Remarks
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28%" colspan="4" valign="top">
+								<p>
+									[relevant comorbidities]
+								</p>
+							</td>
+							<td width="71%" colspan="10" valign="top">
+								<p>
+									[relevant comorbidity remarks]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="28%" colspan="4" valign="top">
+							</td>
+							<td width="71%" colspan="10" valign="top">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+			<tr>
+				<td width="100%">
+					<table class="box" cellspacing="0" cellpadding="0" width="100%">
+
+						<tr>
+							<td width="18%" colspan="3" rowspan="2">
+								<p>
+									<strong>NICE Recommendations Drug Interactions</strong>
+								</p>
+							</td>
+							<td width="81%" colspan="11" valign="top">
+								<p align="center">
+									General Recommendations
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="81%" colspan="11" valign="top">
+								<p align="center">
+									[NICE general recommendation]
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td width="100%">
+					<table class="box" cellspacing="0" cellpadding="0" width="100%">
+
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+								<p>
+									<strong>Drug</strong>
+								</p>
+							</td>
+							<td width="53%" colspan="8" valign="top">
+								<p align="center">
+									<strong>Information</strong>
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+								<p>
+									<strong>Recommendation</strong>
+								</p>
+							</td>
+							<td width="9%" valign="top">
+								<p>
+									<strong>Cont.</strong>
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+							</td>
+							<td width="53%" colspan="8" valign="top">
+								<p align="center">
+									<strong>Current Medication</strong>
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+							</td>
+							<td width="9%" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+							</td>
+							<td width="53%" colspan="8" valign="top">
+								<p align="center">
+									Medication for Action
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+							</td>
+							<td width="9%" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+								<p>
+									[Drug]
+								</p>
+							</td>
+							<td width="21%" colspan="3" valign="top">
+								<p align="center">
+									[EC recommendation]
+								</p>
+							</td>
+							<td width="32%" colspan="5" valign="top">
+								<p>
+									[medication information]
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+								<p>
+									[NICE Recommendation]
+								</p>
+							</td>
+							<td width="9%" valign="top">
+								<p>
+									[status]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+							</td>
+							<td width="53%" colspan="8" valign="top">
+								<p align="center">
+									Continued Medication
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+							</td>
+							<td width="9%" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+								<p>
+									[Drug]
+								</p>
+							</td>
+							<td width="21%" colspan="3" valign="top">
+								<p align="center">
+									[EC recommendation]
+								</p>
+							</td>
+							<td width="32%" colspan="5" valign="top">
+								<p>
+									[medication information]
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+								<p>
+									[NICE recommendation]
+								</p>
+							</td>
+							<td width="9%" valign="top">
+								<p>
+									[status]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+							</td>
+							<td width="53%" colspan="8" valign="top">
+								<p align="center">
+									Started Medication
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+							</td>
+							<td width="9%" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+								<p>
+									[Drug]
+								</p>
+							</td>
+							<td width="21%" colspan="3" valign="top">
+								<p align="center">
+									[EC recommendation]
+								</p>
+							</td>
+							<td width="32%" colspan="5" valign="top">
+								<p>
+									[medication information]
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+								<p>
+									[NICE recommendation]
+								</p>
+							</td>
+							<td width="9%" valign="top">
+								<p>
+									[status]
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+							</td>
+							<td width="53%" colspan="8" valign="top">
+								<p align="center">
+									Stopped Medication
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+							</td>
+							<td width="9%" valign="top">
+							</td>
+						</tr>
+						<tr>
+							<td width="14%" colspan="2" valign="top">
+								<p>
+									[Drug]
+								</p>
+							</td>
+							<td width="21%" colspan="3" valign="top">
+								<p align="center">
+									[EC recommendation]
+								</p>
+							</td>
+							<td width="32%" colspan="5" valign="top">
+								<p>
+									[medication information]
+								</p>
+							</td>
+							<td width="22%" colspan="3" valign="top">
+								<p>
+									[NICE recommendation]
+								</p>
+							</td>
+							<td width="9%" valign="top">
+								<p>
+									[status]
+								</p>
+							</td>
+						</tr>
+						<tr height="0">
+							<td width="106">
+							</td>
+							<td width="34">
+							</td>
+							<td width="33">
+							</td>
+							<td width="99">
+							</td>
+							<td width="67">
+							</td>
+							<td width="1">
+							</td>
+							<td width="93">
+							</td>
+							<td width="107">
+							</td>
+							<td width="20">
+							</td>
+							<td width="84">
+							</td>
+							<td width="67">
+							</td>
+							<td width="106">
+							</td>
+							<td width="38">
+							</td>
+							<td width="89">
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>

@@ -1,0 +1,540 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>AXON</title>
+    <base href="./">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,700" rel="stylesheet"> -->
+    <link rel="shortcut icon" type="image/png" href="/assets/images/favicon.png">
+</head>
+<style>
+    p{
+    font-size:12px;
+}
+.user{
+    padding-bottom:10px;
+}
+.userN {
+    font-size: 10px;
+    padding-left:15px;
+}
+
+.ago {
+    font-size: 9px;
+    color: #ccc;
+}
+.userIcon {
+    width: 25px !important;
+    margin-left:18px;
+}
+/* // ----------- updates ------------ //
+// -------------------------------- // */
+span{
+    font-size: 12px;
+}
+
+h6{
+    font-size:14px;
+    font-weight:normal;
+    color:#245ba8;
+}
+.update {
+    margin-top: 10px;
+}
+.updateHead {
+    padding-top: 10px;
+}
+.updateTxt {
+    font-size: 9px;
+    font-weight: 600;
+}
+.updateTime {
+    font-size: 8px;
+    color: #333;
+}
+.updateDetail {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:5px 15px;
+    color: #999;
+}
+.updateDetail h5 {
+    border-top: 1px solid #cccccc;
+    font-size: 10px;
+    font-weight: 500;
+    padding-top:15px;
+}
+.updateDetail p {
+    font-size: 10px !important;
+}
+
+.favMenuIcon {
+    width: 35px;
+    height: 35px;
+}
+
+
+.customMenu .badge {
+    background: #245ba8;
+    color: #f1f1f1;
+    border: 2px solid #fff;
+    padding: 6px 4px 4px 4px;
+    height: 26px !important;
+    width: 26px !important;
+    font-size: 10px;
+    border-radius: 13px;
+    position: relative;
+    top: -55px;
+    left: -40px;
+}
+
+.heading-grey{
+    background-color:#585858;
+    color:#ffffff;
+}
+
+
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:14px;}
+.MsoChpDefault
+	{font-size:10px;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+.MsoMarginLeft{
+	margin-left:50px!important;
+}
+tr{
+	vertical-align:top;
+}
+.borderDivider td:nth-child(2){
+	border-left:2px solid black;
+	padding-left:30px;
+}
+.grey-bar td{
+    background-color:#245ba8;
+    padding:16px;
+    color:#ffffff;
+   }
+   .grey-bar p{
+       margin-bottom:0;
+   }
+
+   .light-grey td{
+    background-color:#ecedee;
+    padding:16px;
+    border:1px solid #ffffff;
+}
+.light-grey p{
+    margin-bottom:0;
+}
+.light-bar td{
+    background-color:#e1e8e8;
+    padding:16px;
+    border:1px solid #ffffff;
+}
+.light-bar p{
+    margin-bottom:0;
+}
+.main-background{
+    background-color:#e8e9ec!important;
+}
+.col-xl-12 > .card{
+    background-color:#e8e9ec!important;
+}
+.bg-primary{
+    background-color:#245ba8!important;
+    color:#ffffff!important;
+}
+.main-background{
+    background-color:#e8e9ec!important;
+
+}
+
+.listMenuIcon{
+    border-left:3px solid transparent;
+    padding: 12px 15px 12px 12px!important;
+}
+.listMenuIcon a{
+    padding:0!important;
+}
+.nav-link.active{ border-left: 3px solid #4cb6ac;  background-color:#002667!important;}
+.dropdown-toggle::after{
+    display:none;
+    }
+.downloaderStatus {
+    margin:0;padding-top:0!important;padding-bottom:0!important;
+    margin-top:8px!important;
+
+}
+/* // .box-height-calc{
+//     min-height: calc(100vh - 53px)!important;
+// }
+// .sticky-offset {
+//     margin-top: 53px!important;;
+// }
+// .fixed-left{
+//     position:fixed;
+// } */
+body {
+    height: 100vh;
+    overflow : scroll;
+    font-family: verdana;
+}
+.sidebar {
+    padding-top:48px;
+    min-height: 100%;
+    overflow:hidden;
+}
+.main{
+    padding-top: 56px;
+    min-height: calc(100vh) !important;
+    max-height: calc(100vh) !important;
+    padding-bottom: 20px;
+}
+
+.collapse.width {
+  width: 0;
+  max-width: 0;
+  height: 100%;
+  transition: max-width 0.3s linear;
+  display: block;
+  overflow: hidden;
+}
+
+.vh-100 {
+    min-height: 100vh;
+}
+
+.collapsing.width {
+  transition:  max-width 0.7s linear;
+  width: 0% !important;
+  height: 100%;
+  max-width: 0% !important;
+  min-width: 0;
+  position: relative;
+  display: block;
+}
+
+.collapse.width.show {
+  transition:  max-width 0.3s linear;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  position: relative;
+  display: block;
+}
+.nav-link{
+    color:#ccc;
+    font-size:12px;
+    padding:10px 6px;
+}
+.nav-link-left{
+    color:#ccc;
+
+    font-size:12px;
+    padding:0px 6px 0px 6px;
+    margin-top:4px;
+}
+.nav-link-i{
+    font-size:16px;
+    padding-top:10px;
+}
+.nav-username{
+    font-size:10px;
+    color:#999;
+    padding-top:18px;
+}
+.menu-center a{
+    padding-top:18px;
+    color:#333;
+}
+.bg-light{
+    background-color:#ffffff!important;
+}
+.selectedPatientBar_Expertcare
+{
+display:block;
+padding-top:10px;
+    margin-bottom: 2px;
+    font-size: 10px !important;
+    padding-left: 1px;
+}
+.info{
+    margin-bottom: 2px;
+}
+.value{
+    font-weight: 600;
+}
+.blue-nav{
+    border-bottom:3px solid #245ba8;
+}
+
+.col-45{
+    width:50px;
+}
+.col-65{
+
+}
+.bg-primary{
+    background-color:#245ba8!important;
+    color:#8d949e!important;
+}
+
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:hover,
+.btn-primary:focus{
+    background-color:#245ba8!important;
+}
+.icon-logo{
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    margin:0 auto;
+    padding-top:10px;
+    display:block;
+}
+ngb-progressbar {
+    margin-top: 5rem;
+    border-radius:0!important;
+  }
+.progressbar{
+   margin:0;
+   display:block;
+   position:absolute;
+   width:100%;
+/* // //    margin-left:45px;
+// //    margin-right:45px;
+//    text-align:center;
+// // margin:auto; */
+   bottom:0;
+   border-radius:0!important;
+}
+.progressdiv{
+    min-height:8px;
+    border-radius:0!important;
+}
+.expertcare_logo{
+    padding-top: 40px;
+    padding-left: 40px;
+}
+</style>
+<body id="rootbody">
+
+
+<div class="row main-background">
+    <div class="col-xl-12">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-xs-12">
+                        <div class="text-xs text-blue mb-4 expertcare_logo">
+                           <img src="/Users/theresa/Documents/Repo-Theresa/axon_web/admin_bootstrap/src/assets/images/expertcare_logo.png" width="200px" height="auto">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="WordSection1">
+                    <div class="card border-left-info shadow  py-2">
+                        <div class="card-body">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;padding:40px">
+
+                        <tr class="light-grey">
+                            <td colspan="2"><p class="MsoNormal">Medication Change Request for: </p></td>
+                        </tr>
+                        <tr class="light-bar">
+                            <td colspan="2">
+                                <p class="MsoNormal">
+                                    <span style="color:#245ba8;">
+                                        {{ patientService.patient.registration.callingName }} {{ patientService.patient.registration.familyName }},
+                                        {{ patientService.patient.registration.nhsNumber }}
+                                    </span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="light-bar">
+                            <td colspan="2">
+                                <p class="MsoNormal">
+                                    <span style="color:#245ba8;">{{ patientService.patient.registration.dateOfBirth }}, [sex]</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="light-bar">
+                            <td colspan="2">
+                                <p class="MsoNormal">
+                                    <span style="color:#245ba8;">[patient telephone home], [patient mobile]</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr class="light-bar">
+                            <td colspan="2">
+                                <p class="MsoNormal">
+                                    <span style="color:#245ba8;">[patient block address]</span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="card border-left-info shadow  py-2">
+                <div class="card-body">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;padding:40px">
+
+                        <tr>
+                            <td colspan="2"><p class="MsoNormal">
+                                Please authorise the following changes to the above patient’s medication following a Hypertension medicines review completed
+                                    on <span style="color:#245ba8">*[date]</span>:</p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                        <tr class="grey-bar">
+                            <td colspan="2"><p class="MsoNormal">Stop the following medication: </p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p class="MsoNormal MsoMarginLeft"><span
+                                        style="color:#245ba8">[</span><span
+                                        lang=EN-US style="color:#245ba8">auto-populate with name of medication
+                                        that
+                                        should be discontinued</span><span style="color:#245ba8">] </span></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><p class="MsoNormal MsoMarginLeft"><span
+                                        style="color:#245ba8">[</span><span
+                                        lang=EN-US style="color:#245ba8">auto-populate with name of medication
+                                        that
+                                        should be discontinued</span><span style="color:#245ba8">] </span></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="card border-left-info shadow  py-2">
+                <div class="card-body">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;padding:40px">
+                        <tr class="grey-bar">
+                            <td colspan="2"><p class="MsoNormal">Start the following medication: </p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                        <tr class="borderDivider">
+                            <td><p class="MsoNormal MsoMarginLeft">Medication</p></td>
+                            <td style="min-width:200px"><p class="MsoNormal">Dose</p></td>
+                        </tr>
+                        <tr class="borderDivider">
+                            <td><span style="color:#245ba8" class="MsoMarginLeft">[</span><span
+                                    lang=EN-US style="color:#245ba8">auto-populate with name of medication
+                                    that
+                                    should be continued</span><span style="color:#245ba8">] </span></td>
+                            <td><span style="color:#7030A0">[enter dosage]</span></td>
+                        </tr>
+                        <tr class="borderDivider">
+                            <td><span style="color:#245ba8" class="MsoMarginLeft">[</span><span
+                                    lang=EN-US style="color:#245ba8">auto-populate with name of medication
+                                    that
+                                    should be continued</span><span style="color:#245ba8">] </span></td>
+                            <td><span style="color:#7030A0">[enter dosage]</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="card border-left-info shadow  py-2">
+                <div class="card-body">
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;padding:40px">
+                        <tr class="grey-bar">
+                            <td colspan="2"><p class="MsoNormal">Continue with the following
+                                    medication: </p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                        <tr class="borderDivider">
+                            <td><p class="MsoNormal MsoMarginLeft">Medication</p></td>
+                            <td style="min-width:200px"><p class="MsoNormal">Dose</p></td>
+                        </tr>
+                        <tr class="borderDivider">
+                            <td><span style="color:#245ba8" class="MsoMarginLeft">[</span><span
+                                    lang=EN-US style="color:#245ba8">auto-populate with name of medication
+                                    that
+                                    should be initiated</span><span style="color:#245ba8">] </span></td>
+                            <td><span style="color:#245ba8">*[at same dosage]</span></td>
+                        </tr>
+                        <tr class="borderDivider">
+                            <td><span style="color:#245ba8" class="MsoMarginLeft">[</span><span
+                                    lang=EN-US style="color:#245ba8">auto-populate with name of medication
+                                    that
+                                    should be initiated</span><span style="color:#245ba8">] </span></td>
+                            <td><span style="color:#245ba8">*[at same dosage]</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal">The patient should return in <span
+                                        style="color:#7030A0">[number]
+                                    </span><span style="color:black">months for a medication review.</span></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <p class="MsoNormal"><span style="color:black">&nbsp;</span></p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
+</body>
+
+</html>
