@@ -1,0 +1,189 @@
+<div class="">
+    <div class="btn-group p-1" role="group" text-center>
+        <button type="button" class="m-2 btn btn-sm btn-rounded btn-filter w-10"
+            [ngStyle]="{'background-color':isHighSelected ? '#f04141' : '#989aa2' }"
+            (click)="toggleHigh()">HIGH</button>
+        <button type="button" class="mt-2 mb-2 btn btn-sm btn-rounded btn-filter w-10"
+            [ngStyle]="{'background-color':isMediumSelected ? '#ffce00' : '#989aa2' }"
+            (click)="toggleMedium()">MEDIUM</button>
+        <button type="button" class="m-2 btn btn-sm btn-rounded btn-filter w-10"
+            [ngStyle]="{'background-color':isLowSelected ? '#10dc60' : '#989aa2' }" (click)="toggleLow()">LOW</button>
+        <form class="form-inline">
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control mt-1" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model"
+                        ngbDatepicker #d="ngbDatepicker">
+                    <div class="input-group-append mt-1 w-5">
+                        <button class="btn btn-outline-secondary btn-sm calendar" (click)="d.toggle()" type="button">
+                            <i class="fa fa-calendar"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- <div class="text-primary">{{ selectedDate }}</div> -->
+        <div class="col-auto mb-2 mt-2 pr-0">
+
+            <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <div class="col-auto mt-2 pl-1">
+            <button class="btn btn-sm btn-success" type="submit" [disabled]="loadingData">
+                <i class="fa fa-search"></i>
+            </button>
+            &nbsp;
+            <img *ngIf="loadingData"
+                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <button type="button" class="btn btn-sm  btn-outline-dark" >
+                {{'CLEAR_BUTTON' | translate}} <i class="fa fa-times"></i>
+            </button>
+            &nbsp;
+
+        </div>
+    </div>
+    <div class="btn-group  pull-right" role="group" text-right>
+        <div class="col-auto mt-1 p-0"><button type="button" class="btn" [class.active]="isVisibleGrid"
+            (click)="isVisibleGrid = !isVisibleGrid">
+                <i class="fa fa-table fa-2x" style="padding-top:2px"
+                    [ngStyle]="{'color':isVisibleGrid ? '#002567' : 'lightgrey' }"></i>
+            </button></div>
+        <div class="col-auto mt-1 p-0">
+            <button type="button" class="btn"
+                    [class.active]="isVisibleDetail"
+                    (click)="isVisibleDetail = !isVisibleDetail">
+                <i class="fa fa-comments fa-2x" [ngStyle]="{'color':isVisibleDetail ? '#002567' : 'lightgrey' }"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<as-split direction="vertical" class="split-minus-header-footer">
+
+    <as-split-area size="25" [visible]="isVisibleGrid" [order]="0">
+        <as-split direction="vertical">
+            <as-split-area size="25" class="overflow-none">
+                <div class="container card shadow p-2 inside-card">
+
+                    <div class="add-margin-top-20"> </div>
+                    <table class="table table-striped table-bordered dataTable mb-2 inside-table" role="grid"
+                        style="width: 100%;">
+                        <thead>
+                            <tr role="row">
+                                <th (click)="doSort('datetime')" class="col-3 link">
+                                    <i *ngIf="lastSortCol == 'datetime'" class="pull-right fa"
+                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false}"></i>
+                                    {{'DATE' | translate}}
+                                </th>
+                                <th (click)="doSort('type')" class="col-3 link">
+                                    <i *ngIf="lastSortCol == 'type'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false} "></i>
+                                    {{'TYPE' | translate}}
+                                </th>
+                                <th (click)="doSort('severity')" class="col-3 link">
+                                    <i *ngIf="lastSortCol == 'severity'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false }"></i>
+                                    {{'SEVERITY' | translate}}
+                                </th>
+                                <th (click)="doSort('description')" class="col-3 link">
+                                    <i *ngIf="lastSortCol == 'description'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false }"></i>
+                                    {{'DESCRIPTION' | translate}}
+                                </th>
+                            </tr>
+                        </thead>
+                        <as-split direction="vertical" class="split-minus-header inside-footer">
+                            <as-split-area size="25">
+                                <tbody>
+                                    <tr>
+                                        <td *ngIf="loadingData" class="col-12" align='center'>
+                                            <img
+                                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let item of itemList" >
+                                        <td class="col-3">{{ item.datetime | amDateFormat: 'DD-MMMM-YYYY' }}</td>
+                                        <td class="col-3">{{ item.type }}</td>
+                                        <td class="col-3">{{ item.severity }}</td>
+                                        <td class="col-3">{{ item.description }}</td>
+                                    </tr>
+                                    <tr *ngIf="loadingData == false && itemList.length == 0 ">
+                                        <td class="col-12" align='center'>{{'NO_RECORDS_FOUND' | translate}}</td>
+                                    </tr>
+                                </tbody>
+                            </as-split-area>
+                        </as-split>
+
+                        <tfoot>
+                            <tr role="row">
+                                <div class="d-flex justify-content-between p-2">
+                                    <ngb-pagination [collectionSize]="itemList.length" [(page)]="page"
+                                        [pageSize]="pageSize" size="sm">
+                                    </ngb-pagination>
+
+                                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                                        <option value="10">10 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                        <option value="20">20 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                        <option value="50">50 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                    </select>
+                                </div>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </as-split-area>
+        </as-split>
+    </as-split-area>
+
+    <as-split-area size="75" [visible]="isVisibleDetail" [order]="1">
+        <as-split direction="vertical">
+            <as-split-area size="75" class="overflow-none" >
+                <div class="container card shadow p-2 inside-card">
+
+                    <div class="add-margin-top-20"> </div>
+                    <div class="m-4 inside-table" style="width: 100%;">
+
+                        <as-split direction="vertical" class="bottom-inside-footer">
+                            <as-split-area size="75">
+                                <div class="row m-2" *ngFor="let message of messages" #content>
+
+                                    <div *ngIf="message.user !== currentUser" class="col-9 message other-message">
+                                        <b>{{ message.user }}</b><br>
+                                        <span>{{ message.msg }}</span>
+                                        <img src="{{ message.img }}" />
+                                        <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
+                                    </div>
+
+                                    <div *ngIf="message.user === currentUser" class="col-9 offset-3 message my-message">
+                                        <b>{{ message.user }}</b><br>
+                                        <span>{{ message.msg }}</span>
+                                        <img src="{{ message.img }}" />
+                                        <div class="time" text-right><br>{{ message.createdAt | date:'short' }}</div>
+                                    </div>
+                                </div>
+                            </as-split-area>
+                        </as-split>
+
+                        <div class="nav_buttons">
+                            <div class="bg-light">
+                                <div class="row p-0 m-0" align-items-center>
+                                    <div class="col-10">
+                                        <div class="form-group mt-2">
+                                            <textarea class="form-control" rows="3"
+                                                placeholder="{{'WRITE_MESSAGE' | translate}}" id="comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 align-self-center">
+                                        <button [disabled]="newMsg === ''" class="msg-btn btn-light btn-clear btn-block "
+                                            (click)="sendMessage()">
+                                            <i class="fas fa-paper-plane text-primary fa-3x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </as-split-area>
+        </as-split>
+    </as-split-area>
+</as-split>

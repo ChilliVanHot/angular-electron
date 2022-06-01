@@ -117,7 +117,7 @@ Maybe you only want to execute the application in the browser with hot reload? J
 
 YES! You can do it! Just by importing your library in npm dependencies section of `app/package.json` with `npm install --save XXXXX`. \
 It will be loaded by electron during build phase and added to your final bundle. \
-Then use your library by importing it in `app/main.ts` file. Quite simple, isn't it?
+Then use your library by importing it in `electron/main.ts` file. Quite simple, isn't it?
 
 ## E2E Testing
 

@@ -1,0 +1,364 @@
+<as-split direction="vertical">
+    <as-split-area size="100" class="overflow-none">
+        <div class="container">
+            <div style="height:30px;"></div>
+
+            <form class="form-inline search-form" [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)">
+                <div class="row w-100 pr-0">
+                    <div class="col-auto mb-3">
+                        <div class="">
+                            <div>
+                                <label for="input-User-Name" class="control-label text-left">{{'SETTINGS_FIRST_NAME' | translate}}: </label>
+                                <input class="form-control" formControlName="firstName" id="firstName" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto mb-3">
+                        <div class="">
+                            <div>
+                                <label for="input-User-Name" class="control-label text-left">{{'SETTINGS_LAST_NAME' | translate}}: </label>
+                                <input class="form-control" formControlName="lastName" id="lastName" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 mb-3">
+                        <div class="w-100">
+                            <div>
+                                <label for="input-User-Name" class="control-label text-left">{{'SETTINGS_EMAIL_ADDRESS' | translate}}: </label>
+                                <input class="form-control w-100" formControlName="email" id="email" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto mt-2 pt-1">
+                        <button type="submit" class="btn btn-sm btn-success search-button" [disabled]="isDataLoading">
+                            <i class="fa fa-search text-light"></i>
+                        </button>&nbsp;
+                        <img *ngIf="isSearchLoading"
+                            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <button type="button" class="btn btn-sm btn-outline-dark" (click)="refresh()">{{'CLEAR_BUTTON' | translate}} <i
+                                class="fa fa-times"></i></button>&nbsp;
+                        <button type="button" class="btn btn-sm btn-success" >
+                            {{'SETTINGS_ADD_NEW' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="add-margin-top-20"> </div>
+            <table class="table table-striped table-bordered dataTable mb-2" role="grid" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        <th (click)="doSort('firstName')" class="col-3 link">
+                            <i *ngIf="lastSortColumn == 'firstName'" class="pull-right fa"
+                                [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false}"></i>{{'SETTINGS_FIRST_NAME' | translate}}</th>
+                        <th (click)="doSort('lastName')" class="col-3 link">
+                            <i *ngIf="lastSortColumn == 'lastName'" class="pull-right fa"
+                                [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false}"></i>{{'SETTINGS_LAST_NAME' | translate}}</th>
+                        <th (click)="doSort('email')" class="col-4 link">
+                            <i *ngIf="lastSortColumn == 'email'" class="pull-right fa"
+                                [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc == false}"></i>{{'SETTINGS_EMAIL_ADDRESS' | translate}}</th>
+                        <th class="col-1">{{'SETTINGS_EDIT' | translate}}</th>
+                        <th class="col-1">{{'SETTINGS_DELETE' | translate}}</th>
+                    </tr>
+                </thead>
+                <as-split direction="vertical" class="split-minus-header">
+                    <as-split-area size="100">
+                        <tbody>
+                            <tr>
+                                <td *ngIf="isDataLoading" class="col-12" align='center'>
+                                    <img
+                                        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </td>
+                            </tr>
+                            <tr *ngFor="let doc of itemList">
+                                <td class="col-3">{{doc.firstName}}</td>
+                                <td class="col-3">{{doc.lastName}}</td>
+                                <td class="col-4">{{doc.email}}</td>
+                                <td class="col-1">
+                                    <a  style="cursor: pointer;">
+                                        <i class="material-icons">{{'SETTINGS_EDIT_ICON' | translate}}</i>
+                                    </a>
+                                </td>
+                                <td class="col-1">
+                                    <a  style="cursor: pointer;">
+                                        <i class="material-icons">{{'SETTINGS_DELETE_ICON' | translate}}</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr *ngIf="isDataLoading == false && itemList.length == 0 ">
+                                <td class="col-12" align='center'>{{'NO_RECORDS_FOUND' | translate}}</td>
+                            </tr>
+                        </tbody>
+                        <div class="d-flex justify-content-between p-2">
+                            <ngb-pagination [collectionSize]="itemList.length" [(page)]="page" [pageSize]="pageSize"
+                                size="sm">
+                            </ngb-pagination>
+
+                            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                                <option [ngValue]="10">10 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                <option [ngValue]="20">20 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                <option [ngValue]="50">50 {{'ITEMS_PER_PAGE' | translate}}</option>
+                            </select>
+                        </div>
+                    </as-split-area>
+
+                </as-split>
+
+            </table>
+        </div>
+    </as-split-area>
+</as-split>
+
+
+
+<!-- TEMPLATES -->
+<!-- <ng-template #templateInsert>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left color-green">Insert User</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="insertModalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="insertItemForm" (ngSubmit)="doCreate(insertItemForm.value)">
+                <div class="modal-body">
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.firstName.valid }">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName" />
+                        <small
+                            [hidden]="insertItemForm.controls.firstName.valid || (insertItemForm.controls.firstName.pristine && !submitted)"
+                            class="text-danger">
+                            First Name is required (minimum 3 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.lastName.valid }">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName" />
+                        <small
+                            [hidden]="insertItemForm.controls.lastName.valid || (insertItemForm.controls.lastName.pristine && !submitted)"
+                            class="text-danger">
+                            Last Name is required (minimum 3 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.email.valid }">
+                        <label>Email</label>
+                        <input type="email" class="form-control" email
+                            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" formControlName="email" />
+                        <small
+                            [hidden]="insertItemForm.controls.email.valid || (insertItemForm.controls.email.pristine && !submitted)"
+                            class="text-danger">
+                            Email is invalid
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.mobileNumber.valid }">
+                        <label>Mobile Number</label>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label></label>
+                                <int-phone-prefix [locale]="'en'" [disabled] readonly formControlName="countryCode"
+                                    width="40"></int-phone-prefix>
+                            </div>
+                            <div class="col-sm-9">
+                                <label></label>
+                                <input type="text" class="form-control" formControlName="mobileNumber" />
+                            </div>
+                        </div>
+
+
+
+                        <small
+                            [hidden]="insertItemForm.controls.countryCode.valid || (insertItemForm.controls.countryCode.pristine && !submitted)"
+                            class="text-danger">
+                            Mobile Number is invalid
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.role.valid }">
+                        <label>Role</label>
+                        <select class="form-control" formControlName="role">
+                            <option value='null'>--None--</option>
+                            <option *ngFor="let role of _docService.roleList" value="{{role.value}}">
+                                {{role.value}}
+                            </option>
+                        </select>
+                        <br />
+                        <small
+                            [hidden]="insertItemForm.controls.role.valid || (insertItemForm.controls.role.pristine && !submitted)"
+                            class="text-danger">
+                            Role is required (minimum 5 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.password.valid }">
+                        <label>Password</label>
+                        <input type="password" class="form-control" (keydown.space)="$event.preventDefault()"
+                            onPaste="return false" formControlName="password" />
+                        <small
+                            [hidden]="insertItemForm.controls.password.valid || (insertItemForm.controls.password.pristine && !submitted)"
+                            class="text-danger">
+                            Password is required (minimum 5 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !insertItemForm.controls.verifyPassword.valid }">
+                        <label>Verify Password</label>
+                        <password-input name="password" formControlName="verifyPassword"
+                            (keydown.space)="$event.preventDefault()" onPaste="return false" behaviour="click">
+                        </password-input>
+                        <small
+                            [hidden]="!insertItemForm.controls.verifyPassword.errors?.MatchPassword || (insertItemForm.controls.verifyPassword.pristine && !submitted)"
+                            class="text-danger">
+                            Passwords do not match
+                        </small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="insertModalRef.hide()">Cancel</button>
+
+                    <button type="submit" class="btn btn-success" [disabled]="!insertItemForm.valid">Save</button>
+                </div>
+            </form>
+        </ng-template>
+
+
+        <ng-template #templateUpdate>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left color-green">Update User</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="updateModalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="updateItemForm" (ngSubmit)="doUpdate(updateItemForm.value, updateItemForm.valid)">
+                <div class="modal-body">
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.firstName.valid }">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName" />
+                        <small
+                            [hidden]="updateItemForm.controls.firstName.valid || (updateItemForm.controls.firstName.pristine && !submitted)"
+                            class="text-danger">
+                            First Name is required (minimum 3 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.lastName.valid }">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName" />
+                        <small
+                            [hidden]="updateItemForm.controls.lastName.valid || (updateItemForm.controls.lastName.pristine && !submitted)"
+                            class="text-danger">
+                            Last Name is required (minimum 3 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.email.valid }">
+                        <label>Email</label>
+                        <input type="email" class="form-control" email
+                            pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" onPaste="return false"
+                            formControlName="email" />
+                        <small
+                            [hidden]="updateItemForm.controls.email.valid || (updateItemForm.controls.email.pristine && !submitted)"
+                            class="text-danger">
+                            Email is invalid
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.mobileNumber.valid }">
+                        <label>Mobile Number</label>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label></label>
+                                <int-phone-prefix [locale]="'en'" readonly formControlName="countryCode">
+                                </int-phone-prefix>
+                            </div>
+                            <div class="col-sm-9">
+                                <label></label>
+                                <input type="text" class="form-control" formControlName="mobileNumber" />
+                            </div>
+                        </div>
+                        <small
+                            [hidden]="updateItemForm.controls.countryCode.valid || (updateItemForm.controls.countryCode.pristine && !submitted)"
+                            class="text-danger">
+                            Mobile Number is invalid
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.role.valid }">
+                        <label>Role</label>
+                        <select class="form-control" formControlName="role">
+                            <option value=''>Select Role</option>
+                            <option *ngFor="let role of _docService.roleList" class="form-control"
+                                [ngValue]="role.value">
+                                {{role.value}}
+                            </option>
+                        </select>
+                        <small
+                            [hidden]="updateItemForm.controls.role.valid || (updateItemForm.controls.role.pristine && !submitted)"
+                            class="text-danger">
+                            Role is required (minimum 5 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.password.valid }">
+                        <label>Password</label>
+                        <input type="password" class="form-control" (keydown.space)="$event.preventDefault()"
+                            onPaste="return false" formControlName="password" />
+                        <small
+                            [hidden]="updateItemForm.controls.password.valid || (updateItemForm.controls.password.pristine && !submitted)"
+                            class="text-danger">
+                            Password is required (minimum 5 characters).
+                        </small>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{ 'has-error': submitted && !updateItemForm.controls.verifyPassword.valid }">
+                        <label>Verify Password</label>
+                        <password-input name="password" formControlName="verifyPassword"
+                            (keydown.space)="$event.preventDefault()" onPaste="return false" behaviour="click">
+                        </password-input>
+                        <small
+                            [hidden]="!updateItemForm.controls.verifyPassword.errors?.MatchPassword || (updateItemForm.controls.verifyPassword.pristine && !submitted)"
+                            class="text-danger">
+                            Passwords do not match
+                        </small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="updateModalRef.hide()">Cancel</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!updateItemForm.valid">Update</button>
+                </div>
+            </form>
+        </ng-template>
+
+
+        <ng-template #templateDelete>
+            <div class="modal-header">
+                <h4 class="modal-title pull-left color-green">Delete User</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="deleteModalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this organization?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="deleteModalRef.hide()">Cancel</button>
+                <button type="button" class="btn btn-success" (click)="doDelete()">Delete</button>
+            </div>
+        </ng-template> -->

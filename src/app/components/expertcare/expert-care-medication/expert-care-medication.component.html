@@ -1,0 +1,93 @@
+<!-- Content Row -->
+<div class="row mt-0 mb-4 bg-light pt-3">
+    <div class="col">
+        <p>{{'EXPERTCARE_PATIENT_DETAILS' | translate}}&nbsp;&nbsp;|</p>
+    </div>
+    <div class="col">
+        <p class="text-primary">Hypertension</p>
+    </div>
+    <div class="col">
+        <p class="text-primary">Raised</p>
+    </div>
+    <div class="col">
+        <p class="text-primary">Male</p>
+    </div>
+    <div class="col">
+        <p class="text-primary">African/Caribbean</p>
+    </div>
+    <div class="col">
+        <p class="text-primary">55 and Under</p>
+    </div>
+</div>
+<div class="row border-bottom mb-2">
+    <div class="col-6">
+        <h3 class="text-primary">{{'EXPERTCARE_CURRENT_MEDICATION' | translate}}</h3>
+        <div class="card-body p-0">
+            <div class="card w-100" *ngFor="let item of listOne">
+                <div class="card-header bg-medium p-0 pt-1 pb-1 text-primary">
+                    <div class="row m-2">
+                        <div class="col-4">{{item.col1}}</div>
+                        <div class="col-4">{{item.col2}}</div>
+                        <div class="col-4">{{item.col3}}</div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row m-2" *ngFor="let child of item.children">
+                        <div class="col-4">{{child.name}}</div>
+                        <div class="col-4">{{child.remarks}}</div>
+                        <div class="col-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""></label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <h3 class="text-primary">{{'EXPERTCARE_UNSUITABLE_MEDICATION' | translate}} <div class="pull-right">
+                <button type="button" class="btn btn-primary btn-sm question-btn"><i
+                        class="fa fa-question fa-2x text-gray-100 "></i></button>
+            </div>
+        </h3>
+        <div class="card-body p-0">
+            <div class="card w-100" *ngFor="let item of listTwo">
+                <div class="card-header bg-medium p-0 pt-1 pb-1 text-primary">
+                    <div class="row m-2">
+                        <div class="col-4">{{item.col1}}</div>
+                        <div class="col-4">{{item.col2}}</div>
+                        <div class="col-4">{{item.col3}}</div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row m-2" *ngFor="let child of item.children">
+                        <div class="col-4">{{child.name}}</div>
+                        <div class="col-4">{{child.remarks}}</div>
+                        <div class="col-4">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""></label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-2">
+    <div class="col pull-right">
+
+        <button type="button" class="btn btn-primary btn-sm"
+            routerLink="/expert-care/expert-care-clinical-details">{{'EXPERTCARE_CLINICAL_MEDICATION_STATUS_CONFIRMED' | translate}}
+            <i class="fa fa-arrow-circle-o-right text-gray-300"></i></button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+export class DefaultSettings {
+    System: string = '';
+    IP: string = '';
+    WSPort: string = '';
+    WSSPort: string = '';
+    WSCert: string = '';
+    WSCertPwd: string = '';
+    TCPPort: string = '';
+    UIExe: string = '';
+    NowDll: string = '';
+    NowVer: string = '';
+    LastDll: string = '';
+    LastVer: string = '';
+    IsUp: boolean = false;
+    TimerHeart: string = '';
+    TimerRelay: string = '';
+    TimerPoll: string = '';
+    OnUser: string = '';
+    OnNacsCode: string = '';
+    RemoteApiUrl: string = '';
+    LocalApiUrl: string = '';
+    ApiKey1: string = '';
+    ApiKey2: string = '';
+    EmisCert: string = '';
+    EmisCertPwd: string = '';
+    TppDeviceID: string = '';
+  }

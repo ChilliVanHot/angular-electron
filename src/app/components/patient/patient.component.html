@@ -1,0 +1,221 @@
+<div class="flexBox border-left-info shadow">
+    <div class="sidebar-box">
+        <as-split direction="horizontal" [useTransition]="true" (gutterClick)="onGutterClick($event)" (dragEnd)="onDragEnd($event)">
+            <as-split-area [size]="areas[0].size" order="areas[0].order">
+                <as-split direction="vertical">
+                    <as-split-area>
+                        <div ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll"
+                            id="patient-sidemenu">
+
+                            <div routerLink="app-users" routerLinkActive="active" ref="group-panel-app-users"
+                                class="card form-builder-panel">
+                                <div id="heading-app-users" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-app-users" aria-expanded="false"
+                                            type="button" class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-users text-primary"></i>
+                                            {{'PATIENT_APP_USERS' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div routerLink="alerts" routerLinkActive="active" ref="group-panel-alerts"
+                                class="card form-builder-panel">
+                                <div id="heading-alerts" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false"
+                                            type="button" class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-exclamation-triangle text-primary"></i>
+                                            {{'PATIENT_ALERTS' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div routerLink="allergies" routerLinkActive="active" ref="group-panel-allergies" class="card form-builder-panel">
+                                <div id="heading-allergies" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-allergies"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-allergies text-primary"></i>
+                                            {{'PATIENT_ALLERGIES' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="communication" routerLinkActive="active" ref="group-panel-communication" class="card form-builder-panel">
+                                <div id="heading-communication" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-communication"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-comments text-primary"></i>
+                                                {{'PATIENT_COMMUNICATION' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="devices" routerLinkActive="active" ref="group-panel-devices" class="card form-builder-panel">
+                                <div id="heading-devices" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-devices"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-mobile-alt text-primary"></i>
+                                                {{'PATIENT_DEVICES' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="imaging" routerLinkActive="active" ref="group-panel-imaging" class="card form-builder-panel">
+                                <div id="heading-imaging" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-imaging"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-x-ray text-primary"></i>
+                                                {{'PATIENT_IMAGING' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="immunisations" routerLinkActive="active" ref="group-panel-immunisations" class="card form-builder-panel">
+                                <div id="heading-immunisations" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-immunisations"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-syringe text-primary"></i>
+                                                {{'PATIENT_IMMUNISATIONS' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="medical-history" routerLinkActive="active" ref="group-panel-medical-history" class="card form-builder-panel">
+                                <div id="heading-medical-history" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-medical-history"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-notes-medical text-primary"></i>
+                                            {{'PATIENT_MEDICAL_HISTORY' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="medication" routerLinkActive="active" ref="group-panel-medication" class="card form-builder-panel">
+                                <div id="heading-medication" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-medication"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;"
+                                                class="fas fa-pills text-primary"></i>
+                                         {{'PATIENT_MEDICATION' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div ref="group-panel-list1" class="card form-builder-panel">
+                                <div id="heading-list1" class="card-header form-builder-group-header p-0">
+                                    <h5 class="m-0">
+                                        <button ref="sidebar-anchor" (click)="toggleListOpen()" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+                                            <i style="margin-right: 5px;" class="fas fa-balance-scale text-primary"></i>
+                                         {{'PATIENT_METRICS' | translate}}
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div routerLink="metrics-weight" routerLinkActive="active"  ref="sidebar-group" class="collapse show" id="group-list1" *ngIf="isListOpen">
+                                    <div ref="sidebar-container" class="card-body no-drop plr-2"
+                                        id="group-container-basic">
+
+                                        <span class="btn btn-primary btn-sm btn-block formcomponent drag-copy accordion-btn-sub mt-0"
+                                            data-type="textfield" data-key="textfield" data-group="list1">
+
+                                            <i style="margin-right: 5px;" class="fa fa-weight"></i>
+
+                                            {{'PATIENT_WEIGHT' | translate}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div routerLink="metrics-blood-pressure" routerLinkActive="active"  ref="sidebar-group" class="collapse show" id="group-list1" *ngIf="isListOpen">
+                                    <div ref="sidebar-container" class="card-body no-drop plr-2"
+                                        id="group-container-basic">
+
+                                        <span class="btn btn-primary btn-sm btn-block formcomponent drag-copy accordion-btn-sub mt-0"
+                                            data-type="textfield" data-key="textfield" data-group="list1">
+
+                                            <i style="margin-right: 5px;" class="fa fa-heartbeat"></i>
+
+                                            {{'PATIENT_BLOOD_PRESSURE' | translate}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div routerLink="metrics-blood-glucose" routerLinkActive="active"  ref="sidebar-group" class="collapse show" id="group-list1" *ngIf="isListOpen">
+                                    <div ref="sidebar-container" class="card-body no-drop plr-2"
+                                        id="group-container-basic">
+
+                                        <span class="btn btn-primary btn-sm btn-block formcomponent drag-copy accordion-btn-sub mt-0"
+                                            data-type="textfield" data-key="textfield" data-group="list1">
+
+                                            <i style="margin-right: 5px;" class="fa fa-utensils"></i>
+
+                                            {{'PATIENT_BLOOD_GLUCOSE' | translate}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div routerLink="metrics-height" routerLinkActive="active"  ref="sidebar-group" class="collapse show" id="group-list1" *ngIf="isListOpen">
+                                    <div ref="sidebar-container" class="card-body no-drop plr-2"
+                                        id="group-container-basic">
+
+                                        <span class="btn btn-primary btn-sm btn-block formcomponent drag-copy accordion-btn-sub mt-0"
+                                            data-type="textfield" data-key="textfield" data-group="list1">
+
+                                            <i style="margin-right: 5px;" class="fa fa-ruler-vertical"></i>
+
+                                            {{'PATIENT_HEIGHT' | translate}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div routerLink="metrics-bmi" routerLinkActive="active"  ref="sidebar-group" class="collapse show" id="group-list1" *ngIf="isListOpen">
+                                    <div ref="sidebar-container" class="card-body no-drop plr-2"
+                                        id="group-container-basic">
+
+                                        <span class="btn btn-primary btn-sm btn-block formcomponent drag-copy accordion-btn-sub mt-0"
+                                            data-type="textfield" data-key="textfield" data-group="list1">
+
+                                            <i style="margin-right: 5px;" class="fa fa-child"></i>
+
+                                            {{'PATIENT_BMI' | translate}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </as-split-area>
+                </as-split>
+            </as-split-area>
+
+            <as-split-area [size]="areas[1].size" order="areas[1].order">
+                <router-outlet></router-outlet>
+            </as-split-area>
+
+        </as-split>
+    </div>
+</div>

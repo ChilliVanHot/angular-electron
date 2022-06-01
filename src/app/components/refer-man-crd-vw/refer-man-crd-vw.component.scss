@@ -1,0 +1,289 @@
+mwlResizable {
+    box-sizing: border-box; // required for the enableGhostResize option to work
+}
+table {
+}
+td {
+    width: 100%;
+    vertical-align: top;
+}
+
+.nav_buttons {
+    background-color: #f6f6f6;
+    width: 100%;
+}
+.detailHeight {
+    border-bottom: 1px solid #444;
+
+    width: 100%;
+}
+.top {
+    background-color: #D7EEF6;
+    width: 100%;
+    min-height: 10%;
+    overflow-y: scroll;
+    min-height: 10%;
+    max-height: 80%;
+}
+.bottom {
+    background-color: rgb(159, 133, 133);
+    width: 100%;
+    overflow-y: scroll;
+    min-height: 10%;
+    max-height: 80%;
+}
+.btn-filter {
+    color: #fff;
+}
+.w-10 {
+    width: 60px;
+    font-size: 10px;
+}
+.w-5 {
+    width: 40px;
+}
+.nav_buttons button {
+    width: 60px;
+    height: 32px !important;
+}
+div,
+p {
+    font-size: 10px;
+}
+input, .btn-sm {
+    height: 28px;
+    font-size: 10px;
+}
+
+.detail {
+    background-color: #ffffff;
+    border-bottom: 2px solid #666;
+}
+.remainder {
+    background-color: #ffffff;
+    border-bottom: 2px solid #666;
+}
+.toolbar-top {
+    margin-top: 54px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+}
+
+.my-message {
+    background-color: #D7EEF6;
+    color: #333;
+}
+
+.other-message {
+    background-color: #f3f3f7;
+    color: #333;
+}
+
+.time {
+    color: #333;
+    float: right;
+    font-size: 10px;
+}
+
+.message-input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    resize: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.msg-btn {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border:0;
+    box-shadow:none;
+}
+// img {
+//     display: block;
+// }
+
+.footer {
+    padding-bottom: 60px !important;
+}
+.split-minus-header-footer {
+    height: calc(100vh - 139px) !important
+}
+// table //
+a:hover {
+    cursor:pointer;
+}
+
+tabset {
+    width: 100%;
+}
+
+.link {
+    cursor: pointer;
+}
+
+.highlighted {
+    background-color: #cccccc;
+}
+
+.selectAction:hover {
+    background-color: #cccccc;
+}
+
+.selectAction {
+    cursor: pointer;
+
+}
+
+
+// ::-webkit-scrollbar {
+//     width: 6px;
+//     background-color: #F5F5F5;
+// }
+// ::-webkit-scrollbar-thumb {
+//     background-color: #000000;
+// }
+// ::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+//     background-color: #F5F5F5;
+// }
+.table-fixed {
+    width: 100%;
+}
+.table-fixed tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+}
+.btn-filter {
+    color: #fff;
+}
+.w-10 {
+    width: 60px;
+    font-size: 10px;
+}
+.w-5 {
+    width: 40px;
+    height: 32px;
+}
+
+div,
+p {
+    font-size: 10px;
+}
+input, select, .btn-sm {
+
+    font-size: 10px;
+}
+.link{
+    border-right:2px solid #dee2e6;
+}
+label, select{
+    font-size:12px;
+}
+thead,tbody,tr{
+    display:inline-block;
+}
+td, th{
+    display:inline-block;
+    font-size: 9px;
+}
+thead tr, thead th{
+    float:left;
+}
+td{
+    padding:5px;
+    min-height:30px;
+}
+th{
+    background-color:#245ba8;
+    color:#fff;
+    border:0;
+}
+th:first-child{
+    padding-left:12px;
+}
+th{
+    padding-left:9px;
+}
+thead, thead tr{
+    display:block;
+}
+thead tr{
+    float:none;
+}
+tbody tr{
+    display: table;
+    width: 100%;
+}
+th{
+    display:block;
+}
+tbody {
+    // margin-bottom: 5px;
+    // // margin-bottom: 55px;
+    // // padding-bottom: 80px;
+    width: 100%;
+    // height: calc(100vh - 315px)!important;
+    // overflow-y: auto;
+    // display: block;
+}
+
+table{
+    border: #01468a solid 0px !important;
+}
+.overflow-none{
+    overflow:hidden;
+}
+.cardList{
+    overflow-y:auto;
+    height: calc(100vh - 180px)!important;
+}
+.split-minus-header{
+    height: 100%!important;
+    }
+
+    .inside-card, .inside-table{
+        overflow-x: hidden;
+        overflow-y: hidden;
+        display: contents;
+    }
+.inside-footer{
+    height: calc(100% - 110px)!important
+
+}
+.bottom-inside-footer{
+    height: calc(100vh - 440px)!important
+
+}
+tfoot, tfoot > tr{
+    width: 100%;
+    display: inline-block;
+}
+
+.filterRow{
+    background-color: rgba(231,231,240,0.7);
+    input[type=checkbox]{
+        margin-right: 5px;
+        vertical-align: middle;
+        margin-top: -4px;
+    }
+}
+.btn-outline-primary{border:none;color:#01468a};
+.btn-outline-primary:hover{color:#000000};
+.cp{ cursor:pointer;}
+
+.btn-outline-primary:hover{
+    background-color: #01468a!important;
+    color:#ffffff!important;
+}
+
+.btn-outline-primary:hover img{
+    filter: brightness(0) invert(1);
+}

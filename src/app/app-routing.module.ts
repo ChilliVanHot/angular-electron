@@ -1,27 +1,49 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { PageNotFoundComponent } from './shared/components';
-
-import { HomeRoutingModule } from './home/home-routing.module';
-import { DetailRoutingModule } from './detail/detail-routing.module';
-
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AngularSplitModule } from 'angular-split';
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+      path: '',
+      redirectTo: 'application',
+      pathMatch: 'full'
   },
+
+  // Toolbar
   {
-    path: '**',
-    component: PageNotFoundComponent
+      path: 'toolbar',
+      loadChildren: () => import('./components/toolbar/toolbar.module').then(m => m.ToolbarModule)
+  },
+
+  // Application
+  {
+      path: 'application',
+      loadChildren: () => import('./application/application.module').then(m => m.ApplicationModule)
+  },
+
+  // ExpertCare
+  {
+      path: 'expertcare-results',
+    loadChildren: () => import('./components/expertcare/expertcare-results/expertcare-results.module').then(m => m.ExpertcareResultsModule)
+  },
+
+  // Installer
+  {
+      path: 'installer/:origin',
+      loadChildren: () => import('./components/installer/installer.module').then(m => m.InstallerModule)
+  },
+
+
+  // USER
+  {
+      path: 'user',
+      loadChildren: () => import('./components/user/user.module').then(m => m.UserModule)
   }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
-    HomeRoutingModule,
-    DetailRoutingModule
+    RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules, relativeLinkResolution: 'legacy' }),
+    AngularSplitModule.forRoot()
   ],
   exports: [RouterModule]
 })

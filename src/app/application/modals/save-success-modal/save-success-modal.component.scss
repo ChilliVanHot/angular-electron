@@ -1,0 +1,43 @@
+.modal-header, .modal-body, .modal-footer{
+    text-align:center!important;
+    background-color:#245ba8!important;
+    border:none!important;
+    color:#ffffff!important;
+    border-bottom:0;
+    border-radius:none;
+}
+.modal-header{
+    border-top-left-radius:25px;
+    border-top-right-radius:25px;
+}
+.modal-footer{
+    border-bottom-left-radius:25px;
+    border-bottom-right-radius:25px;
+}
+.modal-title{
+    text-align:center;
+    margin-right:-40px;
+}
+.modal-header .close{
+    color:#ffffff;
+    border:0;
+    font-weight:normal;
+    opacity:1;
+    box-shadow: none;
+}
+.modal-header .close:focus{
+    outline:none;
+}
+.modal-footer button
+{
+    color:#ffffff;
+    border-color:#ffffff;
+}
+.modal-footer button:hover
+{
+background-color:#245ba8;
+}
+.modal-content
+{
+    background-color:transparent;
+}

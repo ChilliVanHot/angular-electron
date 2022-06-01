@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.613" height="13.842" viewBox="0 0 12.613 13.842">
+  <g id="Group_9146" data-name="Group 9146" transform="translate(0 1.342)">
+    <g id="Group_9146-2" data-name="Group 9146" transform="translate(0 6.699)">
+      <g id="Path_2029" data-name="Path 2029" transform="translate(0 -1.199)" fill="#1c4da1">
+        <path d="M 10.50944328308105 6.5 L 2.10188364982605 6.5 C 1.405729174613953 6.5 0.8118788599967957 6.082034111022949 0.5915016531944275 5.5 L 12.01982593536377 5.5 C 11.79944801330566 6.082034111022949 11.20559787750244 6.5 10.50944328308105 6.5 Z" stroke="none"/>
+        <path d="M 3.814697265625e-06 5 L 12.61132335662842 5 C 12.61132335662842 6.104569911956787 11.67028331756592 7 10.50944328308105 7 L 2.101883888244629 7 C 0.9410438537597656 7 3.814697265625e-06 6.104569911956787 3.814697265625e-06 5 Z" stroke="none" fill="#1c4da1"/>
+      </g>
+      <line id="Line_1065" data-name="Line 1065" y1="4" transform="translate(1.002)" fill="none" stroke="#1c4da1" stroke-width="2"/>
+      <line id="Line_1066" data-name="Line 1066" y1="4" transform="translate(11.613)" fill="none" stroke="#1c4da1" stroke-width="2"/>
+    </g>
+    <line id="Line_1067" data-name="Line 1067" y1="7" transform="translate(6.307 2)" fill="none" stroke="#1c4da1" stroke-width="2"/>
+    <line id="Line_1068" data-name="Line 1068" x1="2" y2="4" transform="translate(4.307)" fill="none" stroke="#1c4da1" stroke-linecap="round" stroke-width="2"/>
+    <line id="Line_1069" data-name="Line 1069" x2="2" y2="4" transform="translate(6.307)" fill="none" stroke="#1c4da1" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,0 +1,192 @@
+<div class="flexBox border-left-info shadow">
+    <div class="sidebar-box">
+        <as-split direction="horizontal" [useTransition]="true" (gutterClick)="onGutterClick($event)"
+            (dragEnd)="onDragEnd($event)">
+            <as-split-area [size]="areas[0].size" order="areas[0].order">
+                <as-split direction="vertical">
+                    <as-split-area class="pt-3">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="">
+                                    <div class="col-sm-12">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <label class="w-100 black pb-2">
+                                                        Referral Form
+                                                        <input type="radio" class="pull-right" name="formSearch" [(ngModel)]="formSearch" value="referralForm">
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <label class="w-100 black pb-2">
+                                                        Service Provider
+                                                        <input type="radio" class="pull-right" name="formSearch" [(ngModel)]="formSearch" value="serviceProvider">
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <label class="w-100">
+                                                            <div class="row">
+                                                                <div class="col px-2"><label class="custom-control-label px-2" for="includeFavourites">Include favourites and recently accessed search results in
+                                                                search</label></div>
+                                                                <div class="col-auto p-2"><div class="custom-control custom-switch d-inline" id="sw">
+                                                                <input type="checkbox" class="custom-control-input" id="includeFavourites" [(ngModel)]="includeFavourites" name="includeFavourites" value="">
+                                                                <label class="custom-control-label" for="includeFavourites"></label>
+                                                             </div>
+
+                                                        </div>
+                                                        </div>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <div class="row pb-0 mt-0 mb-0">
+                                                <div class="col-sm-12">
+                                                    <p>Service Location</p>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="serviceLocation" [(ngModel)]="serviceLocation" value="practiceAddress"> Practice
+                                                            address</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="serviceLocation" [(ngModel)]="serviceLocation" value="patientAddress"> Patient
+                                                            address</label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row pb-2 mt-0 pt-0" *ngIf="serviceLocation === 'patientAddress' || serviceLocation === 'practiceAddress'">
+
+                                                <div class="col-sm-12">
+                                                    <label for="type" class="control-label">Radius from location is less
+                                                        than:</label>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div ngbDropdown class="w-100">
+                                                                <button class="btn btn-grey w-100"
+                                                                    ngbDropdownToggle>
+                                                                    {{selectedMiles}}</button>
+                                                                <div ngbDropdownMenu class="w-100">
+                                                                    <button class="dropdown-item w-100" *ngFor="let selection of
+                                                                         milesSelection"
+                                                                        (click)="MilesSelect(selection)">
+                                                                        {{selection}}</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row pb-2 mt-2">
+                                                <div class="col-auto">
+                                                    <p>Service Wait Time</p>
+                                                </div>
+
+                                                <div class="col-sm-12">
+                                                    <label for="type" class="control-label">Indicative wait time is less
+                                                        than:</label>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                        <div ngbDropdown class="w-100">
+                                                            <button class="btn btn-grey w-100"
+                                                                ngbDropdownToggle>
+                                                                {{selectedDays}}</button>
+                                                            <div ngbDropdownMenu class="w-100">
+                                                                <button class="dropdown-item" *ngFor="let selection of
+                                                                daysSelection"
+                                                                    (click)="DaysSelect(selection)">
+                                                                    {{selection}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="pb-2 mt-2">
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <p>Priority </p>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <button class="btn clear-btn" (click)="clearPriority()">x&nbsp;&nbsp;Clear</button>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="">
+                                                            <label> <input type="checkbox" name="routine" [(ngModel)]="unCheckPriorityRoutine">
+                                                                Routine</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="">
+                                                            <label><input type="checkbox" name="urgent" [(ngModel)]="unCheckPriorityUrgent"> Urgent</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="">
+                                                            <label><input type="checkbox" name="2weekwait" [(ngModel)]="unCheckPriority2weekwait"> 2 Week
+                                                                wait</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pb-2">
+
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <p>Commissioned by</p>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <button class="btn clear-btn" (click)="clearCommissionedBy()">x&nbsp;&nbsp;Clear</button>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="">
+                                                            <label><input type="checkbox" name="lancashireSouthCumbria" [(ngModel)]="unCheckCommissionedBy">
+                                                                    Lancashire and South Cumbria ICS</label>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="pb-2">
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        <p>Service supported </p>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <button class="btn clear-btn" (click)="clearServiceSupported()">x&nbsp;&nbsp;Clear</button>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="">
+                                                            <label><input type="checkbox" name="eRsServices" [(ngModel)]="unCheckServiceSupported">
+                                                                    e-RS Services</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </as-split-area>
+                </as-split>
+            </as-split-area>
+
+            <as-split-area [size]="areas[1].size" order="areas[1].order">
+                <router-outlet></router-outlet>
+            </as-split-area>
+
+        </as-split>
+    </div>
+</div>

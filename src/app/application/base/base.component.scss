@@ -1,0 +1,257 @@
+.bg-primary{
+    background-color:#12376D!important;
+    color:#ffffff!important;
+}
+.main-background{
+    background-color:#E7E7F0!important;
+}
+.userIcon{
+    color:green;
+}
+.userIcon:active{
+    color:red;
+}
+.patient_title{
+    color:#1c4da1;
+    font-size:18px;
+    padding-top:0;
+    padding-bottom:0;
+    font-weight:bold;
+}
+.header-width {
+    width: 296px;
+}
+
+.ax-bg-2 {
+    background-color: #12376d;
+}
+
+.ax-border-top-right-rounded {
+    border-top-right-radius: 1em;
+}
+
+.ax-border-bottom-right-rounded {
+    border-bottom-right-radius: 1em;
+}
+
+.ax-icon-width {
+    width: 40px;
+}
+.dob{
+    font-weight:bold;
+    color:#1c4da1;
+}
+.nhs_number{
+    font-weight:bold;
+    color:#000000;
+}
+.no_patient{
+    font-size:12px;
+    padding-top:6px!important;
+    font-style:italic;
+    color:#999999;
+}
+.listMenuIcon{
+    border-left:3px solid transparent;
+    padding: 12px 15px 12px 12px!important;
+}
+.listMenuIcon a{
+    padding:0!important;
+}
+.nav-link.active{  background-color:#12376D!important;}
+.dropdown-toggle::after{
+    display:none;
+    }
+.downloaderStatus {
+    margin:0;padding-top:0!important;padding-bottom:0!important;
+    margin-top:8px!important;
+
+}
+// .box-height-calc{
+//     min-height: calc(100vh - 53px)!important;
+// }
+// .sticky-offset {
+//     margin-top: 53px!important;;
+// }
+// .fixed-left{
+//     position:fixed;
+// }
+body {
+    padding-top: 56px;
+    height: 100vh;
+    overflow : scroll;
+}
+.sidebar {
+    min-height: 100%;
+    overflow:hidden;
+}
+.main{
+    margin-top: 56px;
+    min-height: calc(100vh - 76px) !important;
+    max-height: calc(100vh - 76px) !important;
+    margin-bottom: 20px;
+}
+
+.collapse.width {
+  width: 0;
+  max-width: 0;
+  height: 100%;
+  transition: max-width 0.3s linear;
+  display: block;
+  overflow: hidden;
+}
+
+.vh-100 {
+    min-height: 100vh;
+}
+
+.collapsing.width {
+  transition:  max-width 0.7s linear;
+  width: 0% !important;
+  height: 100%;
+  max-width: 0% !important;
+  min-width: 0;
+  position: relative;
+  display: block;
+}
+
+.collapse.width.show {
+  transition:  max-width 0.3s linear;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  min-width: 0;
+  position: relative;
+  display: block;
+}
+.nav-link{
+    color:#ccc;
+    font-size:12px;
+    padding:10px 6px;
+}
+.nav-link-i{
+    font-size:16px;
+    padding-top:10px;
+}
+.nav-username{
+    font-size:10px;
+    color:#999;
+    padding-top:18px;
+}
+.menu-center a{
+    padding-top:18px;
+    color:#333;
+}
+.bg-light{
+    background-color:#ffffff!important;
+}
+.selectedPatientBar
+{
+display:block;
+padding-top:0px;
+    margin-bottom: 2px;
+    font-size: 10px !important;
+    padding-left: 1px;
+    padding-top: 10px;
+}
+.info{
+    margin-bottom: 2px;
+}
+.value{
+    font-weight: 600;
+}
+.blue-nav{
+
+}
+.col-65{
+
+}
+.bg-primary{
+    background-color:#1C4DA1!important;
+    color:#8d949e!important;
+}
+.col-45{
+    width:50px;
+    z-index: 999;
+    background-color:#12376D!important;
+}
+.icon-logo{
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    margin:0 auto;
+    padding-top:10px;
+    display:block;
+}
+ngb-progressbar {
+    margin-top: 5rem;
+    border-radius:0!important;
+  }
+.progressbar{
+   margin:0;
+   display:block;
+   position:absolute;
+   width:100%;
+// //    margin-left:45px;
+// //    margin-right:45px;
+//    text-align:center;
+// // margin:auto;
+   bottom:0;
+   border-radius:0!important;
+}
+.progressdiv{
+    min-height:8px;
+    border-radius:0!important;
+}
+.topTab{
+    background-color:#12376D;
+    color:#ffffff;
+    font-size:20px;
+    padding:8px 10px 10px 16px;
+    width: 300px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+.bottom-items{
+   bottom:0;
+   display:block;
+   position:relative;
+
+}
+.badge {
+    background: red;
+    color: #f1f1f1;
+    border: 2px solid #fff;
+    height: 16px !important;
+    width: 16px !important;
+    font-size: 8px;
+    border-radius: 13px;
+    position: absolute;
+    line-height: 1;
+    margin-top: -4px;
+    padding-bottom: px;
+    margin-left: -8px;
+    vertical-align: top;
+}
+.alert-badge{
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 0.5;
+}
+.alert-badge span{
+    margin:auto 0;font-size:10px;display:block; margin-left:-1px;
+}
+.leftMainMenuBar
+{
+    position: relative;
+    padding-top:48px;
+    height: 100%;
+    display: block;
+}
+.position-fixed{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}

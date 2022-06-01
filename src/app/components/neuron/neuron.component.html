@@ -1,0 +1,254 @@
+<!-- <div>{{this.loading}}</div>
+
+<div *ngIf="loading === true" class="row">
+    <div class="col-xl-12">
+<div id="loadingIndicator"  >
+    <div class="center round-button-corners">
+       <button type="button" class="btn btn-primary round-button-corners loading-spinner-button" style="height:10rem" disabled >
+           <span class="spinner-border valign-middle" style="width: 4rem; height: 4rem;" role="status" aria-hidden="true"></span>
+           <h1>{{ 'EXPERTCARE_LOADING' | translate }}</h1>
+       </button>
+   </div>
+   </div>
+   </div>
+   </div>
+
+   <div *ngIf="loading !== true" class="row"> -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="py-2 px-2 mb-0">
+                <h5>Neuron Settings</h5>
+            </div>
+            <div class="card border-left-info shadow py-50 mb-3">
+                <form [(formGroup)]="formGroup" (ngSubmit)="doSubmit(formGroup)" class="form-horizontal search-form">
+                <!-- <form class="form-horizontal search-form" [formGroup]="form" (ngSubmit)="saveSettings(form)"> -->
+                    <div class="row">
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-system">Select system</label>
+                                    <select class="form-control" formControlName="System" id="System"  [(ngModel)]="settingsModel.System">
+                                        <option value="emis">emis</option>
+                                        <option value="vision1">Vision1</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="IP" class="control-label">IP Address:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.IP" formControlName="IP" id="IP"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-ws-port" class="control-label">WS Port:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.WSPort" formControlName="WSPort" id="WSPort"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-wss-port" class="control-label">WSS Port:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.WSSPort" formControlName="WSSPort" id="WSSPort"  type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-ws-cert" class="control-label">WS Cert:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.WSCert" formControlName="WSCert" id="WSCert" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-ws-cert-pwd" class="control-label">WS Cert PWD:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.WSCertPwd" formControlName="WSCertPwd" id="WSCertPwd" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-tcp-port" class="control-label">TCP Port:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.TCPPort" formControlName="TCPPort" id="TCPPort" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-ui-exe" class="control-label">UI EXE:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.UIExe" formControlName="UIExe" id="UIExe" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-now-dll" class="control-label">Now DLL:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.NowDll" formControlName="NowDll" id="NowDll" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-now-ver" class="control-label">Now Version:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.NowVer" formControlName="NowVer" id="NowVer" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-last-dll" class="control-label">Last DLL:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.LastDll" formControlName="LastDll" id="LastDll" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-last-ver" class="control-label">Last Version:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.LastVer" formControlName="LastVer" id="LastVer" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-is-up" class="control-label">Is Up:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.IsUp" formControlName="IsUp" id="IsUp" type="checkbox">
+                              {{settingsModel.IsUp}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-timer-heart" class="control-label">Heartbeat timer interval (s):</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.TimerHeart" formControlName="TimerHeart" id="TimerHeart" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-timer-relay" class="control-label">Timer Relay (s):</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.TimerRelay" formControlName="TimerRelay" id="TimerRelay" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-timer-poll" class="control-label">Timer Poll (s):</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.TimerPoll" formControlName="TimerPoll" id="TimerPoll" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-on-user" class="control-label">On User:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.OnUser" formControlName="OnUser" id="OnUser" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-on-nacs-code" class="control-label">On ACS Code:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.OnNacsCode" formControlName="OnNacsCode" id="OnNacsCode" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-remote-api-url" class="control-label">Remote API URL:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.RemoteApiUrl" formControlName="RemoteApiUrl" id="RemoteApiUrl" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-local-api-url" class="control-label">Local API URL:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.LocalApiUrl" formControlName="LocalApiUrl" id="LocalApiUrl" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-api-key-1" class="control-label">API Key 1:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.ApiKey1" formControlName="ApiKey1" id="ApiKey1" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-api-key-2" class="control-label">API Key 2:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.ApiKey2" formControlName="ApiKey2" id="ApiKey2" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-emis-cert" class="control-label">Emis Cert:</label>
+                                    <input class="form-control"[(ngModel)]="settingsModel.EmisCert"  formControlName="EmisCert" id="EmisCert" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-emis-cert-pwd" class="control-label">Emis Cert PWD:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.EmisCertPwd" formControlName="EmisCertPwd" id="EmisCertPwd" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="form-group px-2">
+                                <div>
+                                    <label for="input-emis-cert-pwd" class="control-label">TPP Device ID:</label>
+                                    <input class="form-control" [(ngModel)]="settingsModel.TppDeviceID" formControlName="TppDeviceID" id="TppDeviceID" type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-12 col-md-10 offset-md-1">
+                            <div class="px-2">
+                                <!-- [disabled]="!neuronSettingsForm.valid" -->
+                                <button type="submit" class="btn btn-success search-button">
+                                    Submit
+                                </button>
+
+                                <img *ngIf="loading"
+                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                                     />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- <p>IP Address value: {{ IP.value }}</p>
+                <p>IP Address valid: {{ IP.valid }}</p> -->
+                <!-- <p>Form value: {{ f.value | json }}</p>
+                <p>Form valid: {{ f.valid }}</p> -->
+            </div>
+
+        </div>
+    </div>
+<!-- </div> -->
