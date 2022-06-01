@@ -1,0 +1,29 @@
+.mb-0 > a {
+    display: block;
+    position: relative;
+    font-size:12px;
+text-decoration:none;
+  }
+ 
+.card{
+    font-size:11px;
+}
+.col-md-4, .col-md-3{
+    border-right:1px solid #ccc;
+}
+.col-md-4{
+    border-bottom:1px solid #ccc;
+}
+.col-md-3:last-child, .col-md-4:last-child{
+    border-right:0;
+}
+.col-md-3:nth-of-type(4){
+    border-right:0;
+}
+.col-lines{
+    padding:20px;
+    border:1px solid #ccc;
+}
+label{
+    margin-bottom:0;
+}

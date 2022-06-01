@@ -1,0 +1,104 @@
+.dragable {
+    -ms-overflow-style: scrollbar;
+    -webkit-app-region: drag;
+}
+
+.notdragable {
+    -webkit-app-region: no-drag;
+}
+.notdragable:active,
+.notdragable:focus,
+.notdragable:hover{
+    background-color:#0d3387;
+}
+.grabbable:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+
+.dragimage {
+    cursor: move !important;
+    cursor: grab !important;
+    cursor: -moz-grab !important;
+    cursor: -webkit-grab !important;
+
+}
+.icons{
+    height: auto;
+    cursor: pointer;
+    width: 45px;
+    margin: auto 0;
+    display: inline-block;
+    text-align: center;
+    padding: 12px;
+}
+.icon_logo{
+    height: auto;
+    cursor: pointer;
+    width: 45px;
+    margin: auto 0;
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+}
+// tr
+// {
+//     border-bottom:1px solid white;
+// }
+.badge {
+    background: red;
+    color: #f1f1f1;
+    border: 2px solid #fff;
+    /* padding: 4px 4px 4px 4px; */
+    height: 16px !important;
+    width: 16px !important;
+    font-size: 8px;
+    border-radius: 13px;
+    position: absolute;
+    /* right: 0; */
+    /* line-height: 1.2px; */
+    line-height: 1;
+    margin-top:4px;
+    padding-bottom: px;
+    margin-left: -20px;
+    // top: 0;
+    /* margin: -2px; */
+    vertical-align: top;
+}
+.alert-badge{
+    font-weight: bold;
+            font-size: 12px;
+            line-height: 0.5;
+            padding-left: 4.5px;
+}
+
+.info-badge {
+    background: rgb(251, 239, 5);
+    color: #f1f1f1;
+    border: 2px solid #fff;
+    /* padding: 4px 4px 4px 4px; */
+    height: 16px !important;
+    width: 16px !important;
+    font-size: 8px;
+    border-radius: 13px;
+    position: absolute;
+    /* right: 0; */
+    /* line-height: 1.2px; */
+    line-height: 1;
+    margin-top:4px;
+    padding-bottom: px;
+    margin-left: -20px;
+    // top: 0;
+    /* margin: -2px; */
+    vertical-align: top;
+}
+.info-badge{
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 0.5;
+}
+
+table{
+    border-bottom-left-radius: 8px;
+}

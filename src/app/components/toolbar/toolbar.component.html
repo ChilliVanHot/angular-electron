@@ -1,0 +1,179 @@
+<table
+    style="background-color: #2a519a !important; overflow: hidden"
+>
+    <tr>
+        <td>
+            <img
+                class="icons dragable"
+                id="tab"
+                src="assets/images/new/drag_icon.png"
+            />
+        </td>
+    </tr>
+
+    <tr>
+        <td  (click)="toggleToolbar()">
+
+
+            <!-- <ng-template #errorContent><b>{{this.errorToolTip}}</b>!</ng-template> -->
+            <!-- ngbToolTip="errorContent" -->
+            <div
+            >
+                <img
+                    draggable="false"
+                    class="icon_logo notdragable"
+                    id="tab"
+                    src="assets/images/new/axon_icon_logo.png"
+                />
+                <span *ngIf="!this.isActive && !this.isStarting" class="badge badge-light alert-badge">
+                    !
+                </span>
+                <span *ngIf="!this.isActive && this.isStarting" class=" info-badge badge-light">
+                    *
+                </span>
+            </div>
+            <div
+                *ngIf="downloadPercentage < 100"
+                style="
+                    margin-top: -36px;
+                    margin-left: 7px;
+                    margin-right: 0px;
+                    z-index: 2;
+                    position: absolute;
+                "
+            >
+                <circle-progress
+                    [percent]="downloadPercentage"
+                    [radius]="12"
+                    [outerStrokeWidth]="4"
+                    [innerStrokeWidth]="0"
+                    [outerStrokeColor]="'navy'"
+                    [outerStrokeLinecap]="'butt'"
+                    [animation]="false"
+                    [animationDuration]="1000"
+                    [showTitle]="true"
+                    [showSubtitle]="false"
+                    [titleFontSize]="8"
+                    [showUnits]="true"
+                    [backgroundGradient]="false"
+                    [backgroundColor]="'white'"
+                    [backgroundGradientStopColor]="'white'"
+                    [backgroundPadding]="0"
+                >
+                </circle-progress>
+            </div>
+        </td>
+    </tr>
+
+    <ng-container *ngIf="isOpen">
+        <!--
+        <tr>
+            <td (click)="openMainWindow('inbox')">
+                <img style="cursor: pointer;" class="icons notdragable" id="clip" src="assets/images/icoMail.png">
+                <span class="badge badge-light">4</span>
+            </td>
+        </tr>
+        -->
+
+        <!--
+        <tr>
+            <td (click)="openMainWindow()">
+                <img style="cursor: pointer;" class="icons notdragable" id="library" src="assets/images/icoCare.png">
+            </td>
+        </tr>
+        -->
+
+        <tr>
+            <td *ngIf="this.isActive && !this.isStarting" (click)="openMainWindow('expertcare')">
+                <img
+                    draggable="false"
+                    style="cursor: pointer"
+                    class="icons notdragable"
+                    id="library"
+                    src="assets/images/expertcare.png"
+                />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td (click)="openMainWindow('home')">
+                <img
+                    draggable="false"
+                    style="cursor: pointer"
+                    class="icons notdragable"
+                    id="home"
+                    src="assets/images/icon/axon/house.svg"
+                />
+            </td>
+        </tr>
+        <!--
+        <tr>
+            <td (click)="openMainWindow('expertcare/form')">
+                <img style="cursor: pointer;" class="icons notdragable" id="library" src="assets/images/expertcare_full.png">
+            </td>
+        </tr>
+        -->
+
+        <!-- <tr>
+            <td (click)="openMainWindow('signup')">
+                <img
+                    draggable="false"
+                    style="cursor: pointer"
+                    class="icons notdragable"
+                    id="subscriptions"
+                    src="assets/images/icoSubs.png"
+                /> -->
+        <!-- <span class="badge badge-light">4</span> -->
+        <!-- </td>
+        </tr> -->
+
+        <!--
+        <tr>
+            <td (click)="openMainWindow('thinClient')">
+                <img style="cursor: pointer;" class="icons notdragable" id="thinClient" src="assets/images/icoSettings.png">
+            </td>
+        </tr>
+        -->
+
+        <!-- <tr>
+            <td (click)="openMainWindow('reports')">
+                <img draggable="false" style="cursor: pointer;" class="icons notdragable" id="mail" src="assets/images/icon/axon/growth.svg"> -->
+        <!-- <span class="badge badge-light">4</span> -->
+        <!-- </td> -->
+        <!-- <td (click)="openMainWindow('reports')">
+                <img style="cursor: pointer;" class="icons notdragable" id="mail" src="assets/images/icoLibrary.png">
+            </td> -->
+        <!-- </tr>  -->
+
+         <!-- <tr>
+            <td (click)="openMainWindow('installer/update')">
+                <img
+                    draggable="false"
+                    style="cursor: pointer"
+                    class="icons notdragable"
+                    id="installer"
+                    src="assets/images/icoSettings.png"
+                />
+            </td>
+        </tr> -->
+
+<!--
+        <tr>
+            <td (click)="hideToolbar()">
+                <img style="cursor: pointer;" class="icons notdragable" id="subscriptions" src="assets/images/icon/axon/exit.svg">
+            </td>
+        </tr> -->
+
+    </ng-container>
+    <tr>
+        <td>
+            <img
+                class="icons dragable"
+                id="tab"
+                src="assets/images/new/drag_icon.png"
+            />
+        </td>
+    </tr>
+</table>
+

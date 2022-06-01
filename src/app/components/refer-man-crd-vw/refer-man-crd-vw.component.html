@@ -1,0 +1,364 @@
+<!-- Content Row -->
+<div class="row h-100">
+    <div class="col-xl-12">
+        <div class="card border-left-info no-bottom-border shadow">
+            <div class="card-body p-1">
+                <div class="row no-gutters align-items-center">
+                    <div class="col">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <div class="btn-group pull-left" role="group">
+
+                                    <div class="col-auto mt-1 p-0">
+                                        <button type="button" class="btn"
+                                            routerLink="/application/referral-management/review"
+                                            routerLinkActive="active">
+                                            <img class="svg" width="20"
+                                                src="assets/images/icon/axon/tableListOff.svg"
+                                                style="padding-top:2px;" />
+                                        </button>
+                                    </div>
+                                    <div class="col-auto mt-1 px-0">
+                                        <button type="button" class="btn px-0">
+                                            <img class="svg" width="20" src="assets/images/icon/axon/tableGridOn.svg"
+                                                style="padding-top:2px" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col pull-right">
+
+                                <div class="btn-group pull-right" role="group">
+                                    <div class="col-auto mt-1 pt-2"><button type="button"
+                                            class="btn btn-sm btn-outline-primary" [class.active]="isFilter"
+                                            (click)="isFilter = !isFilter"
+                                            [ngStyle]="{'background-color':isFilter ? '#1C4DA1' : 'white' }">
+                                            <img class="svg" width="12" src="assets/images/icon/axon/filterOn.svg"
+                                                *ngIf="isFilter" />
+                                            <img class="svg" width="12" src="assets/images/icon/axon/filterOff.svg"
+                                                *ngIf="!isFilter" />
+                                            {{'REF_FORM_FILTER' | translate}}
+                                        </button></div>
+                                    <div class="col-auto mt-1 pt-2"><button type="button"
+                                            class="btn btn-sm btn-outline-primary" [class.active]="isAssign"
+                                            (click)="isAssign = !isAssign"
+                                            [ngStyle]="{'background-color':isAssign ? '#1C4DA1' : 'white' }">
+                                            <img class="svg" width="12" src="assets/images/icon/axon/assignOn.svg"
+                                                *ngIf="isAssign" />
+                                            <img class="svg" width="12" src="assets/images/icon/axon/assignOff.svg"
+                                                *ngIf="!isAssign" />
+                                            {{'REF_FORM_ASSIGN' | translate}}
+                                        </button></div>
+                                    <div class="col-auto mt-1 pt-2"><button type="button"
+                                            class="btn btn-sm btn-outline-primary" [class.active]="isSelfAssign"
+                                            (click)="isSelfAssign = !isSelfAssign"
+                                            [ngStyle]="{'background-color':isSelfAssign ? '#1C4DA1' : 'white' }">
+                                            <img class="svg" width="12"
+                                                src="assets/images/icon/axon/selfAssignOn.svg"
+                                                *ngIf="isSelfAssign" />
+                                            <img class="svg" width="12"
+                                                src="assets/images/icon/axon/selfAssignOff.svg"
+                                                *ngIf="!isSelfAssign" />
+                                            {{'REF_FORM_SELFASSIGN' | translate}}
+                                        </button></div>
+                                    <div class="col-auto mt-1 pt-2"><button type="button"
+                                            class="btn btn-sm btn-outline-primary" [class.active]="isDelete"
+                                            (click)="isDelete = !isDelete"
+                                            [ngStyle]="{'background-color':isDelete ? '#1C4DA1' : 'white' }">
+                                            <img class="svg" width="12" src="assets/images/icon/axon/deleteOn.svg"
+                                                *ngIf="isDelete" />
+                                            <img class="svg" width="12" src="assets/images/icon/axon/deleteOff.svg"
+                                                *ngIf="!isDelete" />
+                                            {{'REF_FORM_DELETE' | translate}}
+                                        </button></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filterRow" *ngIf="isFilter">
+
+                            <div class="row btn-group p-1" role="group" text-center>
+
+                                <div class="col-auto mb-2 mt-2 pr-0">
+                                    <form class="form-inline">
+                                        <input type="text" class="form-control btn-grey"
+                                            placeholder="Filter by Keyword">
+                                    </form>
+                                </div>
+                                <div class="col-auto mt-2 pl-1">
+                                    <form class="form-inline">
+                                        <button class="btn btn-sm btn-grey cp" type="submit" [disabled]="loadingData">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <!-- &nbsp;
+                        <img *ngIf="loadingData"
+                            src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <button type="button" class="btn btn-sm  btn-outline-dark" (click)="doClear()">
+                            {{'CLEAR_BUTTON' | translate}} <i class="fa fa-times"></i>
+                        </button>
+                        &nbsp; -->
+                                    </form>
+                                </div>
+                                <div class="col-auto mt-2 pl-1">
+                                    <form class="form-inline text-left">
+                                        <div class="form-group">
+                                            <div class="input-group">
+
+                                                <div ngbDropdown class="d-inline-block">
+                                                    <button class="btn btn-sm btn-grey" id="dropdownForm1"
+                                                        ngbDropdownToggle>{{'REF_FORM_ASSIGNED_TO' |
+                                                        translate}}</button>
+                                                    <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="px-2">
+                                                        <form>
+
+                                                            <div class="form-check">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <label class="text-left"> <input type="checkbox"
+                                                                                name="person1" [(ngModel)]="person1">
+                                                                            me</label>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12">
+                                                                        <div class="">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="person2"
+                                                                                    [(ngModel)]="person2"> Dr A.J.
+                                                                                Peterson</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="person3"
+                                                                                    [(ngModel)]="person3"> Dr
+                                                                                Beamish</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="text-left">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="person4"
+                                                                                    [(ngModel)]="person4"> Nurse
+                                                                                Patty</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-divider"></div>
+                                                        </form>
+                                                        <button class="btn clear-btn mr-1"
+                                                            >x&nbsp;&nbsp;Clear</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-auto mt-2 pl-1">
+                                    <form class="form-inline text-left">
+                                        <div class="form-group">
+                                            <div class="input-group">
+
+                                                <div ngbDropdown class="d-inline-block">
+                                                    <button class="btn btn-sm btn-grey" id="dropdownForm1"
+                                                        ngbDropdownToggle>{{'REF_FORM_CREATEDBY' | translate}}</button>
+                                                    <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="px-2">
+                                                        <form>
+
+                                                            <div class="form-check">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <label class="text-left"> <input type="checkbox"
+                                                                                name="person1" [(ngModel)]="person1">
+                                                                            me</label>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12">
+                                                                        <div class="">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="person2"
+                                                                                    [(ngModel)]="person2"> Dr A.J.
+                                                                                Peterson</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="person3"
+                                                                                    [(ngModel)]="person3"> Dr
+                                                                                Beamish</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="text-left">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="person4"
+                                                                                    [(ngModel)]="person4"> Nurse
+                                                                                Patty</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-divider"></div>
+                                                        </form>
+                                                        <button class="btn clear-btn mr-1"
+                                                            >x&nbsp;&nbsp;Clear</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-auto mt-2 pl-1">
+                                    <form class="form-inline">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input class="form-control btn-grey" placeholder="Due Date" name="dp"
+                                                    [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                                                <div class="input-group-append w-5">
+                                                    <button class="btn btn-grey btn-sm calendar" (click)="d.toggle()"
+                                                        type="button">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- <div class="col-auto mt-2 pl-1">
+                <div class="text-primary">yy{{ selectedDate }}</div>
+            </div> -->
+                                <div class="col-auto mt-2 pl-1">
+                                    <form class="form-inline text-left">
+                                        <div class="form-group">
+                                            <div class="input-group">
+
+                                                <div ngbDropdown class="d-inline-block">
+                                                    <button class="btn btn-sm btn-grey" id="dropdownForm1"
+                                                        ngbDropdownToggle>{{'REF_FORM_PRIORITY' | translate}}</button>
+                                                    <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="px-2">
+                                                        <form>
+
+                                                            <div class="form-check">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <label class="text-left"> <input type="checkbox"
+                                                                                name="routine" [(ngModel)]="routine">
+                                                                            Routine</label>
+                                                                    </div>
+
+                                                                    <div class="col-sm-12">
+                                                                        <div class="">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="urgent"
+                                                                                    [(ngModel)]="urgent"> Urgent</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="">
+                                                                            <label class="text-left"><input
+                                                                                    type="checkbox" name="twoweekwait"
+                                                                                    [(ngModel)]="twoweekwait"> 2 week
+                                                                                wait</label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="dropdown-divider"></div>
+                                                        </form>
+                                                        <button class="btn clear-btn mr-1"
+                                                          >x&nbsp;&nbsp;Clear</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div class="col-auto mt-1 pl-1 pt-2">
+                                    <form class="form-inline">
+                                        <img class="svg pt-1 cp" width="12" src="assets/images/icon/axon/close.svg"
+                                            (click)="isFilter = !isFilter" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row p-1 py-2">
+                    <div class="col">
+                        <div class="card p-2 card-light-grey shadow">
+                            <div>
+                                <h5>{{'REF_FORM_DRAFT' | translate}}<span class="badge badge-clear">17</span></h5>
+                                <div class="cardList">
+                                <div *ngFor="let item of itemList">
+                                <div class="card p-2 card-light-grey"  [ngClass]="{'blue-card' : item.priority === 'Routine', 'red-card' : item.priority === 'Urgent', 'yellow-card' : item.priority === '2week wait'}">
+                                        <p class="mb-0"><span>
+                                            <img class="svg" width="12" src="assets/images/icon/axon/statusBlue.svg"  *ngIf="item.priority === 'Routine'"/>
+                                            <img class="svg" width="12" src="assets/images/icon/axon/statusRed.svg"   *ngIf="item.priority === 'Urgent'"/>
+                                            <img class="svg" width="12" src="assets/images/icon/axon/statusYellow.svg"  *ngIf="item.priority === '2week wait'" />
+                                        </span><span> {{ item.patient }}</span>
+                                        <br/>{{ item.documentname }}
+                                        <br/>{{'REF_REVIEW_CREATEDBY' | translate}}:{{ item.createdBy}}
+                                        <br/>{{'REF_REVIEW_DUEDATE' | translate}}: {{ item.duedate | amDateFormat: 'DD-MM-YYYY'}}</p>
+                                </div>
+                                </div>
+                            </div>
+                                <!-- <div class="card p-2 card-light-grey shadow" class="red-card"  *ngFor="let item of itemList">
+                                    <p class="mb-0"><span><img class="svg" width="12" src="assets/images/icon/axon/statusRed.svg" /></span><span> {{ item.patient }}</span>
+                                    <br/>{{ item.documentname }}
+                                    <br/>{{'REF_REVIEW_CREATEDBY' | translate}}:{{ item.createdBy}}
+                                    <br/>{{'REF_REVIEW_DUEDATE' | translate}}: {{ item.duedate }}</p>
+                            </div>
+                            <div class="card p-2 card-light-grey shadow" class="yellow-card"  *ngFor="let item of itemList">
+                                <p class="mb-0"><span><img class="svg" width="12" src="assets/images/icon/axon/statusYellow.svg" /></span><span> {{ item.patient }}</span>
+                                <br/>{{ item.documentname }}
+                                <br/>{{'REF_REVIEW_CREATEDBY' | translate}}:{{ item.createdBy}}
+                                <br/>{{'REF_REVIEW_DUEDATE' | translate}}: {{ item.duedate }}</p>
+                        </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card p-2 card-light-grey shadow">
+                            <div>
+                                <h5>{{'REF_FORM_SUBMITTED' | translate}}<span class="badge badge-clear">30</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card p-2 card-light-grey shadow">
+                            <div>
+                                <h5>{{'REF_FORM_RETURNED' | translate}}<span class="badge badge-clear">2</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card p-2 card-light-grey shadow">
+                            <div>
+                                <h5>{{'REF_FORM_REJECTED' | translate}}<span class="badge badge-clear">50</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card p-2 card-light-grey shadow">
+                            <div>
+                                <h5>{{'REF_FORM_COMPLETED' | translate}}<span class="badge badge-clear">125</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+        <!-- Content Row -->

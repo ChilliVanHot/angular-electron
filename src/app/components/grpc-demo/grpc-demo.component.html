@@ -1,0 +1,20 @@
+<p>
+  grpc-demo works!
+</p>
+
+<button (click)="startUnary()">Start Unary</button>
+<div>
+  Messages:
+  <ul>
+    <li *ngFor="let message of result">{{message.name}}</li>
+  </ul>
+</div>
+
+<button (click)="startStream()">Start Streaming</button>
+<div>
+  Messages:
+  <ul>
+    <li *ngFor="let message of resulStream">{{message.name}}</li>
+  </ul>
+</div>
+

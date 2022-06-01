@@ -1,0 +1,9 @@
+2022-04-22T13:26:52.6378499Z: [System.IO.FileNotFoundException] Error initing local file: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json ##Could not find file 'C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json'.##    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path)
+   at AxonIm1Service.Models.ServiceConfiguration.UpdateCfgFromFile(String FullFilePath, ServiceConfiguration Config) in C:\Users\User\source\repos\Axon - Thin Client\TransactionService\Models\ServiceConfiguration.cs:line 102
+2022-04-22T13:26:52.7032024Z: Starting transaction service.
+2022-04-22T13:26:52.7712032Z: Using config path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\ -> C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default
+2022-04-22T13:26:52.7722004Z: Loading (Is Upgrading: False) Dll Path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll

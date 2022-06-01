@@ -1,0 +1,8 @@
+2022-05-18T08:06:46.2200393Z: Config file read OK: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json
+2022-05-18T08:06:46.2310100Z: Starting transaction service.
+2022-05-18T08:06:46.6449065Z: Using config path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\ -> C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default
+2022-05-18T08:06:46.6459013Z: Loading (Is Upgrading: False) Dll Path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll
+2022-05-18T08:06:46.7416441Z: Loaded [Transaction.Service.Im1Control] from [C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll] version [] into [Im1IntegrationDll-]
+2022-05-18T08:06:46.9312905Z: Binding WebSocket to: ws://127.0.0.1:16030
+2022-05-18T08:06:47.1292938Z: Fleck [ws] Info Log: Server started at ws://127.0.0.1:16030 (actual port 16030)
+2022-05-18T08:06:47.2802012Z: Binding WebSocket to: wss://127.0.0.1:16031

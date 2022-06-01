@@ -1,0 +1,169 @@
+a:hover {
+    cursor:pointer;
+}
+
+tabset {
+    width: 100%;
+}
+
+.link {
+    cursor: pointer;
+}
+.input-group{
+    padding-top: 10px;
+}
+textarea{
+    font-size:12px;
+}
+.highlighted {
+    background-color: #cccccc;
+}
+
+.selectAction:hover {
+    background-color: #cccccc;
+}
+
+.selectAction {
+    cursor: pointer;
+
+}
+
+.half{
+    height:300px;
+    width:100%;
+    display: inline-block;
+}
+
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+.table-fixed {
+    width: 100%;
+}
+.table-fixed tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+}
+.btn-filter {
+    color: #fff;
+}
+.w-10 {
+    width: 60px;
+    font-size: 10px;
+}
+.w-5 {
+    width: 40px;
+    height: 32px;
+}
+.nav_buttons button {
+    width: 60px !important;
+    height: 32px !important;
+}
+div,
+p {
+    font-size: 10px;
+}
+input, select, .btn-sm {
+    height: 28px;
+    font-size: 12px;
+}
+.link{
+    border-right:2px solid #dee2e6;
+}
+label, select{
+    font-size:12px;
+}
+thead,tbody,tr{
+    display:inline-block;
+}
+td, th{
+    display:inline-block;
+    font-size: 12px;
+}
+thead tr, thead th{
+    float:left;
+}
+td{
+    padding:5px;
+    min-height:30px;
+}
+th{
+    background-color:#245ba8;
+    color:#fff;
+    border:0;
+}
+th:first-child{
+    padding-left:12px;
+}
+th{
+    padding-left:9px;
+}
+thead, thead tr{
+    display:block;
+}
+thead tr{
+    float:none;
+}
+tbody tr{
+    display: table;
+    width: 100%;
+}
+th{
+    display:block;
+}
+tbody {
+    margin-bottom: 5px;
+    // margin-bottom: 55px;
+    // padding-bottom: 80px;
+    width: 100%;
+    height: calc(100vh - 315px)!important;
+    overflow-y: auto;
+    display: block;
+}
+
+table{
+    border: #01468a solid 0px !important;
+}
+.overflow-none{
+    overflow:hidden;
+}
+
+.split-minus-header{
+    height: 100%!important;
+    }
+    .form-group.hidden {
+        width: 0;
+        margin: 0;
+        border: none;
+        padding: 0;
+      }
+      .custom-day {
+        text-align: center;
+        padding: 0.185rem 0.25rem;
+        display: inline-block;
+        height: 2rem;
+        width: 2rem;
+      }
+      .custom-day.focused {
+        background-color: #e6e6e6;
+      }
+      .custom-day.range, .custom-day:hover {
+        background-color: rgb(2, 117, 216);
+        color: white;
+      }
+      .custom-day.faded {
+        background-color: rgba(2, 117, 216, 0.5);
+      }
+.py-50{
+    padding: 30px 14px;
+}

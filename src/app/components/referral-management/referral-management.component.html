@@ -1,0 +1,150 @@
+<div class="flexBox border-left-info shadow">
+    <div class="sidebar-box ">
+        <as-split direction="horizontal" [useTransition]="true" (gutterClick)="onGutterClick($event)" (dragEnd)="onDragEnd($event)">
+            <as-split-area [size]="areas[0].size" order="areas[0].order">
+                <as-split direction="vertical">
+                    <as-split-area>
+                        <div  ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll" id="inbox-sidemenu">
+
+                            <div routerLinkActive="active" ref="group-panel-alerts" class="card form-builder-panel">
+                                <div id="heading-advice-guidance" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+
+                                            {{'REFERRALMANAGEMENT_ADVICE_GUIDANCE' | translate}}
+                                            <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLinkActive="active" ref="group-panel-alerts" class="card form-builder-panel">
+                                <div id="heading-assessment-request" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+
+                                            {{'REFERRALMANAGEMENT_ASSESSMENT_REQUEST' | translate}}
+                                            <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLinkActive="active" ref="group-panel-alerts" class="card form-builder-panel">
+                                <div id="heading-appointment-request" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+
+                                            {{'REFERRALMANAGEMENT_APP_REQUEST' | translate}}
+                                            <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <div  ref="group-panel-chats"
+                                class="card form-builder-panel">
+                                <div id="heading-chats" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-chats" aria-expanded="false"
+                                            type="button" class="btn btn-block builder-group-button accordion-btn">
+
+                                            {{'REFERRALMANAGEMENT_DRAFT' | translate}}
+                                            <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div routerLink="/review" routerLinkActive="active" ref="group-panel-review"
+                                class="card form-builder-panel">
+                                <div id="heading-review" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-review"
+                                            aria-expanded="false" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn">
+
+                                            {{'REFERRALMANAGEMENT_REVIEW' | translate}}
+                                            <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div  routerLinkActive="active" ref="group-panel-alerts"
+                                class="card form-builder-panel">
+                                <div id="heading-alerts" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false"
+                                            type="button" class="btn btn-block builder-group-button accordion-btn">
+
+                                                {{'REFERRALMANAGEMENT_SUBMITTED' | translate}}
+                                                <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div  ref="group-panel-alerts"
+                                class="card form-builder-panel">
+                                <div id="heading-alerts" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false"
+                                            type="button" class="btn btn-block builder-group-button accordion-btn">
+
+                                                {{'REFERRALMANAGEMENT_RETURNED' | translate}}
+                                                <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div ref="group-panel-alerts"
+                                class="card form-builder-panel">
+                                <div id="heading-alerts" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" aria-controls="group-alerts" aria-expanded="false"
+                                            type="button" class="btn btn-block builder-group-button accordion-btn">
+
+                                                {{'REFERRALMANAGEMENT_COMPLETED' | translate}}
+                                                <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div ref="group-panel-list1" class="card form-builder-panel">
+                                <div id="heading-list1" class="card-header form-builder-group-header p-0">
+                                    <h5 class="mb-0 mt-0">
+                                        <button ref="sidebar-anchor" (click)="toggleListOpen()" type="button"
+                                            class="btn btn-block builder-group-button accordion-btn pl-2">
+                                            <i class="fa fa-chevron-down text-primary"></i>
+                                         {{'REFERRALMANAGEMENT_LIST_HEADING' | translate}}
+                                         <span class="badge badge-light pull-right">1</span>
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div ref="sidebar-group" class="collapse show" id="group-list1" *ngIf="isListOpen">
+                                    <div ref="sidebar-container" class="card-body no-drop p-0"
+                                        id="group-container-basic">
+
+                                        <span class="btn btn-clear btn-block formcomponent drag-copy accordion-btn-sub"
+                                            data-type="textfield" data-key="textfield" data-group="list1">
+
+                                            <i  class="fa fa-sort-up text-primary"></i>
+
+                                            {{'REFERRALMANAGEMENT_SUBMENU_ITEM' | translate}}
+                                            <span class="badge badge-light pull-right">1</span>
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </as-split-area>
+                </as-split>
+            </as-split-area>
+            <as-split-area [size]="areas[1].size" order="areas[1].order">
+                <router-outlet></router-outlet>
+
+            </as-split-area>
+        </as-split>
+    </div>
+</div>

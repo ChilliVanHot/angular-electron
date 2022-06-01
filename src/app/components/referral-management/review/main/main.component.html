@@ -1,0 +1,1359 @@
+<div class="row mb-2">
+    <div class="col">
+        <div class="btn-group pull-left" role="group">
+
+            <div class="col-auto mt-1 p-0">
+                <button type="button" class="btn">
+                    <img class="svg" width="20" src="assets/images/icon/axon/tableListOn.svg"
+                        style="padding-top:2px;" />
+                </button>
+            </div>
+            <div class="col-auto mt-1 px-0">
+                <button type="button" class="btn px-0" routerLink="/application/refer-man-crd-vw"
+                    routerLinkActive="active">
+                    <img class="svg" width="20" src="assets/images/icon/axon/tableGridOff.svg"
+                        style="padding-top:2px" />
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col pull-right">
+
+        <div class="btn-group pull-right" role="group">
+            <div class="col-auto mt-1 pt-2"><button type="button" class="btn btn-sm btn-outline-primary"
+                    [class.active]="isFilter" (click)="isFilter = !isFilter"
+                    [ngStyle]="{'background-color':isFilter ? '#1C4DA1' : 'white' }">
+                    <img class="svg" width="12" src="assets/images/icon/axon/filterOn.svg" *ngIf="isFilter" />
+                    <img class="svg" width="12" src="assets/images/icon/axon/filterOff.svg" *ngIf="!isFilter" />
+                    {{'REF_FORM_FILTER' | translate}}
+                </button></div>
+            <div class="col-auto mt-1 pt-2"><button type="button" class="btn btn-sm btn-outline-primary"
+                    [class.active]="isAssign" (click)="isAssign = !isAssign"
+                    [ngStyle]="{'background-color':isAssign ? '#1C4DA1' : 'white' }">
+                    <img class="svg" width="12" src="assets/images/icon/axon/assignOn.svg" *ngIf="isAssign" />
+                    <img class="svg" width="12" src="assets/images/icon/axon/assignOff.svg" *ngIf="!isAssign" />
+                    {{'REF_FORM_ASSIGN' | translate}}
+                </button></div>
+            <div class="col-auto mt-1 pt-2"><button type="button" class="btn btn-sm btn-outline-primary"
+                    [class.active]="isSelfAssign" (click)="isSelfAssign = !isSelfAssign"
+                    [ngStyle]="{'background-color':isSelfAssign ? '#1C4DA1' : 'white' }">
+                    <img class="svg" width="12" src="assets/images/icon/axon/selfAssignOn.svg"
+                        *ngIf="isSelfAssign" />
+                    <img class="svg" width="12" src="assets/images/icon/axon/selfAssignOff.svg"
+                        *ngIf="!isSelfAssign" />
+                    {{'REF_FORM_SELFASSIGN' | translate}}
+                </button></div>
+            <div class="col-auto mt-1 pt-2"><button type="button" class="btn btn-sm btn-outline-primary"
+                    [class.active]="isDelete" (click)="isDelete = !isDelete"
+                    [ngStyle]="{'background-color':isDelete ? '#1C4DA1' : 'white' }">
+                    <img class="svg" width="12" src="assets/images/icon/axon/deleteOn.svg" *ngIf="isDelete" />
+                    <img class="svg" width="12" src="assets/images/icon/axon/deleteOff.svg" *ngIf="!isDelete" />
+                    {{'REF_FORM_DELETE' | translate}}
+                </button></div>
+        </div>
+    </div>
+</div>
+
+<div class="filterRow" *ngIf="isFilter">
+
+    <div class="row btn-group p-1" role="group" text-center>
+
+        <div class="col-auto mb-2 mt-2 pr-0">
+            <form class="form-inline">
+                <input type="text" class="form-control btn-grey" placeholder="Filter by Keyword">
+            </form>
+        </div>
+        <div class="col-auto mt-2 pl-1">
+            <form class="form-inline">
+                <button class="btn btn-sm btn-grey cp" type="submit" [disabled]="loadingData">
+                    <i class="fa fa-search"></i>
+                </button>
+                <!-- &nbsp;
+                <img *ngIf="loadingData"
+                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                <button type="button" class="btn btn-sm  btn-outline-dark" (click)="doClear()">
+                    {{'CLEAR_BUTTON' | translate}} <i class="fa fa-times"></i>
+                </button>
+                &nbsp; -->
+            </form>
+        </div>
+        <div class="col-auto mt-2 pl-1">
+            <form class="form-inline text-left">
+                <div class="form-group">
+                    <div class="input-group">
+
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-sm btn-grey" id="dropdownForm1"
+                                ngbDropdownToggle>{{'REF_FORM_ASSIGNED_TO' | translate}}</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="px-2">
+                                <form>
+
+                                    <div class="form-check">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="text-left"> <input type="checkbox" name="person1"
+                                                        [(ngModel)]="person1"> me</label>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <div class="">
+                                                    <label class="text-left"><input type="checkbox" name="person2"
+                                                            [(ngModel)]="person2"> Dr A.J. Peterson</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="">
+                                                    <label class="text-left"><input type="checkbox" name="person3"
+                                                            [(ngModel)]="person3"> Dr Beamish</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="text-left">
+                                                    <label class="text-left"><input type="checkbox" name="person4"
+                                                            [(ngModel)]="person4"> Nurse Patty</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                </form>
+                                <button class="btn clear-btn mr-1"
+                                    (click)="clearAssignedTo()">x&nbsp;&nbsp;Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-auto mt-2 pl-1">
+            <form class="form-inline text-left">
+                <div class="form-group">
+                    <div class="input-group">
+
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-sm btn-grey" id="dropdownForm1"
+                                ngbDropdownToggle>{{'REF_FORM_CREATEDBY' | translate}}</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="px-2">
+                                <form>
+
+                                    <div class="form-check">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="text-left"> <input type="checkbox" name="person1"
+                                                        [(ngModel)]="person1"> me</label>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <div class="">
+                                                    <label class="text-left"><input type="checkbox" name="person2"
+                                                            [(ngModel)]="person2"> Dr A.J. Peterson</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="">
+                                                    <label class="text-left"><input type="checkbox" name="person3"
+                                                            [(ngModel)]="person3"> Dr Beamish</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="text-left">
+                                                    <label class="text-left"><input type="checkbox" name="person4"
+                                                            [(ngModel)]="person4"> Nurse Patty</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                </form>
+                                <button class="btn clear-btn mr-1"
+                                    (click)="clearCreatedBy()">x&nbsp;&nbsp;Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-auto mt-2 pl-1">
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control btn-grey" placeholder="Due Date" name="dp" [(ngModel)]="model"
+                            ngbDatepicker #d="ngbDatepicker">
+                        <div class="input-group-append w-5">
+                            <button class="btn btn-grey btn-sm calendar" (click)="d.toggle()" type="button">
+                                <i class="fa fa-calendar"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- <div class="col-auto mt-2 pl-1">
+        <div class="text-primary">yy{{ selectedDate }}</div>
+    </div> -->
+        <div class="col-auto mt-2 pl-1">
+            <form class="form-inline text-left">
+                <div class="form-group">
+                    <div class="input-group">
+
+                        <div ngbDropdown class="d-inline-block">
+                            <button class="btn btn-sm btn-grey" id="dropdownForm1"
+                                ngbDropdownToggle>{{'REF_FORM_PRIORITY' | translate}}</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownForm1" class="px-2">
+                                <form>
+
+                                    <div class="form-check">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <label class="text-left"> <input type="checkbox" name="routine"
+                                                        [(ngModel)]="routine"> Routine</label>
+                                            </div>
+
+                                            <div class="col-sm-12">
+                                                <div class="">
+                                                    <label class="text-left"><input type="checkbox" name="urgent"
+                                                            [(ngModel)]="urgent"> Urgent</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div class="">
+                                                    <label class="text-left"><input type="checkbox" name="twoweekwait"
+                                                            [(ngModel)]="twoweekwait"> 2 week wait</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                </form>
+                                <button class="btn clear-btn mr-1" (click)="clearPriority()">x&nbsp;&nbsp;Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-auto mt-1 pl-1 pt-2">
+            <form class="form-inline">
+                <img class="svg pt-1 cp" width="12" src="assets/images/icon/axon/close.svg"
+                    (click)="isFilter = !isFilter" />
+            </form>
+        </div>
+    </div>
+</div>
+
+<as-split direction="vertical" class="split-minus-header-footer">
+
+    <as-split-area [size]="35" [visible]="isVisibleGrid" [order]="0">
+        <as-split direction="vertical">
+            <as-split-area [size]="25" class="overflow-none">
+                <div class="container card shadow p-2 inside-card">
+
+                    <div class="add-margin-top-20"> </div>
+                    <table class="table table-striped table-bordered dataTable mb-2 inside-table" role="grid"
+                        style="width: 100%;">
+                        <thead>
+                            <tr role="row">
+                                <th (click)="doSort('datetime')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'datetime'" class="pull-right fa"
+                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                    {{'REF_REVIEW_DATE' | translate}}
+                                </th>
+                                <th (click)="doSort('documentname')" class="col-2 link">
+                                    <i *ngIf="lastSortCol === 'documentname'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_DOCUMENT_NAME' | translate}}
+                                </th>
+                                <th (click)="doSort('patient')" class="col-2 link">
+                                    <i *ngIf="lastSortCol === 'patient'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_PATIENT' | translate}}
+                                </th>
+                                <th (click)="doSort('createdBy')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'createdBy'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false} "></i>
+                                    {{'REF_REVIEW_CREATEDBY' | translate}}
+                                </th>
+                                <th (click)="doSort('speciality')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'speciality'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_SPECIALITY' | translate}}
+                                </th>
+                                <th (click)="doSort('ubrn')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'ubrn'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_UBRN' | translate}}
+                                </th>
+                                <th (click)="doSort('duedate')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'duedate'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_DUEDATE' | translate}}
+                                </th>
+                                <th (click)="doSort('priority')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'priority'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_PRIORITY' | translate}}
+                                </th>
+                                <th (click)="doSort('assignedtask')" class="col-1 link">
+                                    <i *ngIf="lastSortCol === 'assignedtask'" class="pull-right fa"
+                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                    {{'REF_REVIEW_ASSIGNED_TASK' | translate}}
+                                </th>
+                                <th class="col-1" style="height:40px">
+
+                                </th>
+                            </tr>
+                        </thead>
+                        <as-split direction="vertical" class="split-minus-header inside-footer">
+                            <as-split-area [size]="25">
+                                <tbody>
+                                    <tr>
+                                        <td *ngIf="loadingData" class="col-12" align='center'>
+                                            <img
+                                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let item of itemList" [class.active]="isVisibleDetail"
+                                    (click)="isVisibleDetail = !isVisibleDetail">
+                                        <td class="col-1">{{ item.datetime | amDateFormat: 'DD-MM-YYYY' }}</td>
+                                        <td class="col-2">{{ item.documentname }}</td>
+                                        <td class="col-2">{{ item.patient }}</td>
+                                        <td class="col-1">{{ item.createdBy}}</td>
+                                        <td class="col-1">{{ item.speciality }}</td>
+                                        <td class="col-1">{{item.ubrn}}</td>
+                                        <td class="col-1">{{ item.duedate | amDateFormat: 'DD-MM-YYYY'}}</td>
+
+                                        <td class="col-1"
+                                            [ngClass]="{'blue-bg' : item.priority === 'Routine', 'red-bg' : item.priority === 'Urgent', 'yellow-bg' : item.priority === '2week wait'}">
+                                            <!-- <img class="svg" width="12" src="assets/images/icon/axon/statusBlue.svg"
+                                                *ngIf="item.priority == 'Routine'" />
+                                            <img class="svg" width="12" src="assets/images/icon/axon/statusRed.svg"
+                                                *ngIf="item.priority == 'Urgent'" />
+                                            <img class="svg" width="12"
+                                                src="assets/images/icon/axon/statusYellow.svg"
+                                                *ngIf="item.priority == '2week wait'" /> -->
+                                            {{ item.priority }}
+                                        </td>
+                                        <td class="col-1">{{ item.assignedtask }}</td>
+                                        <td class="col-1">
+                                           <span class="p-2">
+                                            <a
+                                            placement="right" title="Edit">
+                                            <img class="svg" width="12" src="assets/images/icon/axon/pencil.svg"  /></a></span>
+                                            <span class="p-2">
+                                                <a
+                                                placement="right" title="Assign">
+                                                <img class="svg" width="12" src="assets/images/icon/axon/assign.svg"  /></a></span>
+                                        </td>
+                                    </tr>
+                                    <tr *ngIf="loadingData === false && itemList.length === 0 ">
+                                        <td class="col-12" align='center'>{{'NO_RECORDS_FOUND' | translate}}</td>
+                                    </tr>
+                                </tbody>
+                            </as-split-area>
+                        </as-split>
+
+                        <tfoot>
+                            <tr role="row">
+                                <div class="d-flex justify-content-between p-2">
+                                    <ngb-pagination [collectionSize]="itemList.length" [(page)]="page"
+                                        [pageSize]="pageSize" size="sm">
+                                    </ngb-pagination>
+
+                                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                                        <option value="10">10 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                        <option value="20">20 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                        <option value="50">50 {{'ITEMS_PER_PAGE' | translate}}</option>
+                                    </select>
+                                </div>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </as-split-area>
+        </as-split>
+    </as-split-area>
+
+    <as-split-area [size]="65" [visible]="isVisibleDetail" [order]="1">
+        <as-split direction="vertical">
+            <as-split-area [size]="75" class="overflow-none">
+                <div class="container card shadow p-2 inside-card">
+
+                    <div class="add-margin-top-20"> </div>
+                    <div class="m-4 inside-table" style="width: 100%;">
+
+                        <div class="row h-100">
+                            <div class="col-12 h-100">
+                                <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>{{'REF_PATIENT_DETAIL_REFERRAL_FORM' | translate}}</a>
+                                        <ng-template ngbNavContent>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <!--NEEDS OWN VIEW-->
+
+                                                    <div class="btn-group " role="group">
+                                                        <div class="col-auto mt-1 pt-2"><button type="button"
+                                                                class="btn btn-sm btn-blue">
+                                                                <img class="svg" width="12"
+                                                                    src="assets/images/icon/axon/edit.svg" />
+                                                                {{'REF_FORM_EDITFORM' | translate}} </button>
+                                                        </div>
+
+                                                        <div class="col-auto mt-1 pt-2"><button type="button"
+                                                                class="btn btn-sm btn-blue">
+                                                                <img class="svg" width="12"
+                                                                    src="assets/images/icon/axon/refreshdata.svg" />
+                                                                {{'REF_FORM_REFRESHHDATA' | translate}} </button>
+                                                        </div>
+
+                                                        <div class="col-auto mt-1 pt-2"><button type="button"
+                                                                class="btn btn-sm btn-blue">
+                                                                <img class="svg" width="12"
+                                                                    src="assets/images/icon/axon/submit.svg" />
+                                                                {{'REF_FORM_SUBMIT' | translate}}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <img class="svg" class="w-100" src="assets/images/pdf_eg.svg"/>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>{{'REF_PATIENT_DETAIL_REFERRAL_CRITERIA' | translate}}</a>
+                                        <ng-template ngbNavContent>
+                                            <div class="row h-100">
+                                                <div class="col-12 h-100">
+                                                    <div class="container card shadow p-2 inside-card">
+
+                                                        <div class="add-margin-top-20"> </div>
+                                                        <table
+                                                            class="table table-striped table-bordered dataTable mb-2 inside-table"
+                                                            role="grid" style="width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th (click)="doSort('criteria')" class="col-3 link">
+                                                                        <i *ngIf="lastSortCol === 'criteria'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_CRITERIA' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('criteria_doc')"
+                                                                        class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'criteria_doc'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                        {{'REF_CRITERIA_DOC' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('evidence')" class="col-3 link">
+                                                                        <i *ngIf="lastSortCol === 'evidence'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                        {{'REF_CRITERIA_EVIDENCE' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('addedon')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'addedon'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                        {{'REF_CRITERIA_ADDEDON' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('status')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'status'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                        {{'REF_CRITERIA_STATUS' | translate}}
+                                                                    </th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <as-split direction="vertical"
+                                                                class="split-minus-header inside-footer-ref-criteria">
+                                                                <as-split-area [size]="25">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td *ngIf="loadingData" class="col-12"
+                                                                                align='center'>
+                                                                                <img
+                                                                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngFor="let item of referralCriteriaList"
+                                                                           >
+                                                                            <td class="col-3">{{ item.criteria }}</td>
+                                                                            <td class="col-2">{{ item.criteria_doc}}
+                                                                            </td>
+                                                                            <td class="col-3">{{ item.evidence}}</td>
+                                                                            <td class="col-2">{{ item.addedon |
+                                                                                amDateFormat: 'DD-MMMM-YYYY'}}</td>
+                                                                            <td class="col-2 lightgreen">{{
+                                                                                item.status}}</td>
+                                                                        </tr>
+                                                                        <tr
+                                                                            *ngIf="loadingData === false && referralCriteriaList.length === 0 ">
+                                                                            <td class="col-12" align='center'>
+                                                                                {{'NO_RECORDS_FOUND' | translate}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </as-split-area>
+                                                            </as-split>
+
+                                                            <tfoot>
+                                                                <tr role="row">
+                                                                    <div class="d-flex justify-content-between p-2">
+                                                                        <ngb-pagination
+                                                                            [collectionSize]="referralCriteriaList.length"
+                                                                            [(page)]="page" [pageSize]="pageSize"
+                                                                            size="sm">
+                                                                        </ngb-pagination>
+
+                                                                        <select class="custom-select"
+                                                                            style="width: auto" [(ngModel)]="pageSize">
+                                                                            <option value="10">10 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                            <option value="20">20 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                            <option value="50">50 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>{{'REF_PATIENT_DETAIL_REFERRAL_TASKS' | translate}}</a>
+                                        <ng-template ngbNavContent>
+                                            <div *ngIf="taskList" class="h-100">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="btn-group pull-left" role="group">
+
+                                                            <div class="col-auto mt-1 p-0">
+                                                                <button type="button" class="btn">
+                                                                    <img class="svg" width="20"
+                                                                        src="assets/images/icon/axon/tableListOn.svg"
+                                                                        style="padding-top:2px;" />
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-auto mt-1 px-0">
+                                                                <button type="button" class="btn px-0"
+                                                                    (click)="taskToggle()">
+                                                                    <img class="svg" width="20"
+                                                                        src="assets/images/icon/axon/tableGridOff.svg"
+                                                                        style="padding-top:2px" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col h-100 pull-right mt-1"><button type="button"
+                                                            class="btn btn-sm btn-outline-primary"
+                                                            [class.active]="isDelete" (click)="isDelete = !isDelete"
+                                                            [ngStyle]="{'background-color':isDelete ? '#1C4DA1' : 'white' }">
+                                                            <img class="svg" width="12"
+                                                                src="assets/images/icon/axon/deleteOn.svg"
+                                                                *ngIf="isDelete" />
+                                                            <img class="svg" width="12"
+                                                                src="assets/images/icon/axon/deleteOff.svg"
+                                                                *ngIf="!isDelete" />
+                                                            {{'REF_FORM_DELETE' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row h-100">
+                                                    <div class="col-12 h-100">
+                                                        <div class="container card shadow p-2 inside-card">
+
+                                                            <div class="add-margin-top-20"> </div>
+                                                            <table
+                                                                class="table table-striped table-bordered dataTable mb-2 inside-table"
+                                                                role="grid" style="width: 100%;">
+                                                                <thead>
+                                                                    <tr role="row">
+                                                                        <th (click)="doSort('taskType')"
+                                                                            class="col-1 link">
+                                                                            <i *ngIf="lastSortCol === 'taskType'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                            {{'REF_TASKTYPE' | translate}}
+                                                                        </th>
+                                                                        <th (click)="doSort('taskDescription')"
+                                                                            class="col-3 link">
+                                                                            <i *ngIf="lastSortCol === 'taskDescription'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                            {{'REF_TASK_DESCRIP' | translate}}
+                                                                        </th>
+                                                                        <th (click)="doSort('assignedBy')"
+                                                                            class="col-2  link">
+                                                                            <i *ngIf="lastSortCol === 'evidence'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                            {{'REF_TASK_ASSIGNEDBY' | translate}}
+                                                                        </th>
+                                                                        <th (click)="doSort('assignedTo')"
+                                                                            class="col-2  link">
+                                                                            <i *ngIf="lastSortCol === 'assignedTo'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                            {{'REF_TASK_ASSIGNEDTO' | translate}}
+                                                                        </th>
+                                                                        <th (click)="doSort('dueDate')"
+                                                                            class="col-1  link">
+                                                                            <i *ngIf="lastSortCol === 'dueDate'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                            {{'REF_TASK_DUEDATE' | translate}}
+                                                                        </th>
+                                                                        <th (click)="doSort('priority')"
+                                                                            class="col-1  link">
+                                                                            <i *ngIf="lastSortCol === 'priority'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                            {{'REF_TASK_PRIORITY' | translate}}
+                                                                        </th>
+                                                                        <th (click)="doSort('taskStatus')"
+                                                                            class="col-2  link">
+                                                                            <i *ngIf="lastSortCol === 'taskStatus'"
+                                                                                class="pull-right fa"
+                                                                                [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                            {{'REF_TASK_STATUS' | translate}}
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <as-split direction="vertical"
+                                                                    class="split-minus-header inside-footer-tasks">
+                                                                    <as-split-area [size]="25">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td *ngIf="loadingData" class="col-12"
+                                                                                    align='center'>
+                                                                                    <img
+                                                                                        src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr *ngFor="let item of referralTaskList"
+                                                                              >
+                                                                                <td class="col-1 ">{{ item.taskType }}
+                                                                                </td>
+                                                                                <td class="col-3 ">{{
+                                                                                    item.taskDescription}}
+                                                                                </td>
+                                                                                <td class="col-2 ">{{ item.assignedBy}}
+                                                                                </td>
+                                                                                <td class="col-2 ">{{ item.assignedTo}}
+                                                                                </td>
+                                                                                <td class="col-1 ">{{ item.dueDate |
+                                                                                    amDateFormat: 'DD-MM-YYYY'}}</td>
+                                                                                <td class="col-1 ">{{ item.priority}}
+                                                                                </td>
+                                                                                <td class="col-2 "
+                                                                                    [ngClass]="{'green-bg' : item.taskStatus === 'Completed', 'grey-bg' : item.taskStatus === 'Outstanding', 'pink-bg' : item.taskStatus === 'Overdue'}">
+                                                                                    {{ item.taskStatus}}</td>
+                                                                            </tr>
+                                                                            <tr
+                                                                                *ngIf="loadingData === false && referralTaskList.length === 0 ">
+                                                                                <td class="col-12" align='center'>
+                                                                                    {{'NO_RECORDS_FOUND' | translate}}
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </as-split-area>
+                                                                </as-split>
+
+                                                                <tfoot>
+                                                                    <tr role="row">
+                                                                        <div class="d-flex justify-content-between p-2">
+                                                                            <ngb-pagination
+                                                                                [collectionSize]="referralTaskList.length"
+                                                                                [(page)]="page" [pageSize]="pageSize"
+                                                                                size="sm">
+                                                                            </ngb-pagination>
+
+                                                                            <select class="custom-select"
+                                                                                style="width: auto"
+                                                                                [(ngModel)]="pageSize">
+                                                                                <option value="10">10 {{'ITEMS_PER_PAGE'
+                                                                                    |
+                                                                                    translate}}</option>
+                                                                                <option value="20">20 {{'ITEMS_PER_PAGE'
+                                                                                    |
+                                                                                    translate}}</option>
+                                                                                <option value="50">50 {{'ITEMS_PER_PAGE'
+                                                                                    |
+                                                                                    translate}}</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div *ngIf="!taskList" class="h-100">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="btn-group pull-left" role="group">
+
+                                                            <div class="col-auto mt-1 p-0">
+                                                                <button type="button" class="btn"
+                                                                    (click)="taskToggle()">
+                                                                    <img class="svg" width="20"
+                                                                        src="assets/images/icon/axon/tableListOff.svg"
+                                                                        style="padding-top:2px;" />
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-auto mt-1 px-0">
+                                                                <button type="button" class="btn px-0">
+                                                                    <img class="svg" width="20"
+                                                                        src="assets/images/icon/axon/tableGridOn.svg"
+                                                                        style="padding-top:2px" />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col h-100 pull-right mt-1"><button type="button"
+                                                            class="btn btn-sm btn-outline-primary"
+                                                            [class.active]="isDelete" (click)="isDelete = !isDelete"
+                                                            [ngStyle]="{'background-color':isDelete ? '#1C4DA1' : 'white' }">
+                                                            <img class="svg" width="12"
+                                                                src="assets/images/icon/axon/deleteOn.svg"
+                                                                *ngIf="isDelete" />
+                                                            <img class="svg" width="12"
+                                                                src="assets/images/icon/axon/deleteOff.svg"
+                                                                *ngIf="!isDelete" />
+                                                            {{'REF_FORM_DELETE' | translate}}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="row p-2">
+                                                    <div class="col-4" *ngFor="let item of referralTaskList">
+                                                        <div *ngIf="item.taskStatus === 'Overdue'">
+                                                            <div class="card p-2 pink-bg shadow">
+                                                                <div>
+                                                                    <h5>{{ item.taskStatus}}<span
+                                                                            class="badge badge-clear">1</span></h5>
+                                                                    <div class="cardList">
+                                                                        <div>
+                                                                            <div class="card p-2">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        {{ item.taskDescription }}
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        {{'REF_TASK_PRIORITY' |
+                                                                                        translate}}:{{
+                                                                                        item.priority }}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />{{ item.taskType }}
+                                                                                <br />{{'REF_TASK_ASSIGNEDBY' |
+                                                                                translate}}:{{
+                                                                                item.assignedBy}}
+                                                                                <br />
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        {{'REF_TASK_ASSIGNEDTO' |
+                                                                                        translate}}:
+                                                                                        {{ item.assignedTo}}
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        Due: {{ item.dueDate |
+                                                                                        amDateFormat:
+                                                                                        'DD-MM-YYYY'}}
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div *ngIf="item.taskStatus === 'Outstanding'">
+                                                            <div class="card p-2 grey-bg shadow">
+                                                                <div>
+                                                                    <h5>{{ item.taskStatus}}<span
+                                                                            class="badge badge-clear">1</span></h5>
+                                                                    <div class="cardList">
+                                                                        <div>
+                                                                            <div class="card p-2">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        {{ item.taskDescription }}
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        {{'REF_TASK_PRIORITY' |
+                                                                                        translate}}:{{
+                                                                                        item.priority }}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />{{ item.taskType }}
+                                                                                <br />{{'REF_TASK_ASSIGNEDBY' |
+                                                                                translate}}:{{
+                                                                                item.assignedBy}}
+                                                                                <br />
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        {{'REF_TASK_ASSIGNEDTO' |
+                                                                                        translate}}:
+                                                                                        {{ item.assignedTo}}
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        Due: {{ item.dueDate |
+                                                                                        amDateFormat:
+                                                                                        'DD-MM-YYYY'}}
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div *ngIf="item.taskStatus === 'Completed'">
+                                                            <div class="card p-2 green-bg shadow">
+                                                                <div>
+                                                                    <h5>{{ item.taskStatus}}<span
+                                                                            class="badge badge-clear">1</span></h5>
+                                                                    <div class="cardList">
+                                                                        <div>
+                                                                            <div class="card p-2">
+
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        {{ item.taskDescription }}
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        {{'REF_TASK_PRIORITY' |
+                                                                                        translate}}:{{
+                                                                                        item.priority }}
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br />{{ item.taskType }}
+                                                                                <br />{{'REF_TASK_ASSIGNEDBY' |
+                                                                                translate}}:{{
+                                                                                item.assignedBy}}
+                                                                                <br />
+                                                                                <div class="row">
+                                                                                    <div class="col-6">
+                                                                                        {{'REF_TASK_ASSIGNEDTO' |
+                                                                                        translate}}:
+                                                                                        {{ item.assignedTo}}
+                                                                                    </div>
+                                                                                    <div class="col-6">
+                                                                                        Due: {{ item.dueDate |
+                                                                                        amDateFormat:
+                                                                                        'DD-MM-YYYY'}}
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>{{'REF_PATIENT_DETAIL_FORM_HISTORY' | translate}}</a>
+                                        <ng-template ngbNavContent>
+                                            <div class="row mt-2 h-100">
+                                                <div class="col-2 h-100">
+                                                    <div ref="sidebar"
+                                                        class="accordion builder-sidebar builder-sidebar_scroll">
+
+                                                        <div class="card form-builder-panel br-2">
+                                                            <div class="card-header form-builder-group-header p-0">
+                                                                <h5 class="mb-0 mt-0">
+                                                                    <button ref="sidebar-anchor"
+                                                                        aria-controls="group-app-users"
+                                                                        aria-expanded="false" type="button"
+                                                                        [ngClass]="{'accordion-bg' : draftHistory === true}"
+                                                                        class="btn btn-block builder-group-button accordion-btn"
+                                                                        (click)="showDraftHistory()">
+                                                                        Draft Version History
+                                                                    </button>
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card form-builder-panel">
+                                                            <div class="card-header form-builder-group-header p-0">
+                                                                <h5 class="mb-0 mt-0">
+                                                                    <button ref="sidebar-anchor"
+                                                                        aria-controls="group-app-users"
+                                                                        aria-expanded="false" type="button"
+                                                                        [ngClass]="{'accordion-bg' : decisionSupportAudit === true}"
+                                                                        class="btn btn-block builder-group-button accordion-btn"
+                                                                        (click)="showDecisionSupportHistory()">
+                                                                        Decision Support Audit
+                                                                    </button>
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card form-builder-panel">
+                                                            <div class="card-header form-builder-group-header p-0">
+                                                                <h5 class="mb-0 mt-0">
+                                                                    <button ref="sidebar-anchor"
+                                                                        aria-controls="group-app-users"
+                                                                        aria-expanded="false" type="button"
+                                                                        [ngClass]="{'accordion-bg' : docVersionHistory === true}"
+                                                                        class="btn btn-block builder-group-button accordion-btn"
+                                                                        (click)="showDocVersionHistory()">
+                                                                        Document Version History
+                                                                    </button>
+                                                                </h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 pl-0 h-100">
+                                                    <div class="container card shadow p-2 inside-card">
+
+                                                        <div class="add-margin-top-20"> </div>
+                                                        <table *ngIf="draftHistory"
+                                                            class="table table-striped table-bordered dataTable mb-2 inside-table"
+                                                            role="grid" style="width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th (click)="doSort('inputField')"
+                                                                        class="col-3 link">
+                                                                        <i *ngIf="lastSortCol === 'inputField'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_INPUTFIELD' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('formSection')"
+                                                                        class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'formSection'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                        {{'REF_HISTORY_FORM_SECTION' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('input')" class="col-3 link">
+                                                                        <i *ngIf="lastSortCol === 'input'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_INPUT' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('source')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'source'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_SOURCE' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('duedate')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'duedate'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_DUEDATE' | translate}}
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <as-split direction="vertical"
+                                                                class="split-minus-header inside-footer-history">
+                                                                <as-split-area [size]="25">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td *ngIf="loadingData" class="col-12"
+                                                                                align='center'>
+                                                                                <img
+                                                                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngFor="let item of draftVersionHistoryList"
+                                                                           >
+                                                                            <td class="col-3">{{ item.inputField }}</td>
+                                                                            <td class="col-2">{{ item.formSection}}</td>
+                                                                            <td class="col-3">{{ item.input}}</td>
+                                                                            <td class="col-2">{{ item.source}}</td>
+                                                                            <td class="col-2">{{ item.duedate |
+                                                                                amDateFormat: 'DD-MMMM-YYYY' }}</td>
+                                                                        </tr>
+                                                                        <tr
+                                                                            *ngIf="loadingData === false && draftVersionHistoryList.length === 0 ">
+                                                                            <td class="col-12" align='center'>
+                                                                                {{'NO_RECORDS_FOUND' | translate}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </as-split-area>
+                                                            </as-split>
+
+                                                            <tfoot>
+                                                                <tr role="row">
+                                                                    <div class="d-flex justify-content-between p-2">
+                                                                        <ngb-pagination
+                                                                            [collectionSize]="draftVersionHistoryList.length"
+                                                                            [(page)]="page" [pageSize]="pageSize"
+                                                                            size="sm">
+                                                                        </ngb-pagination>
+
+                                                                        <select class="custom-select"
+                                                                            style="width: auto" [(ngModel)]="pageSize">
+                                                                            <option value="10">10 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                            <option value="20">20 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                            <option value="50">50 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                        <table *ngIf="decisionSupportAudit"
+                                                            class="table table-striped table-bordered dataTable mb-2 inside-table"
+                                                            role="grid" style="width: 100%;">
+                                                            <thead>
+                                                                <tr role="row">
+                                                                    <th (click)="doSort('activity')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'activity'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_ACTIVITY' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('reason')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'reason'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                        {{'REF_HISTORY_REASON' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('user')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'user'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_USER' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('response')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'response'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_USER_RESPONSE' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('evidence')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'evidence'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_EVIDENCE' | translate}}
+                                                                    </th>
+                                                                    <th (click)="doSort('duedate')" class="col-2 link">
+                                                                        <i *ngIf="lastSortCol === 'duedate'"
+                                                                            class="pull-right fa"
+                                                                            [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                        {{'REF_HISTORY_DUEDATE' | translate}}
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <as-split direction="vertical"
+                                                                class="split-minus-header inside-footer">
+                                                                <as-split-area [size]="25">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td *ngIf="loadingData" class="col-12"
+                                                                                align='center'>
+                                                                                <img
+                                                                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr *ngFor="let item of decisionSupportAuditHistoryList"
+                                                                            >
+                                                                            <td class="col-2">{{ item.activity }}</td>
+                                                                            <td class="col-2">{{ item.reason}}</td>
+                                                                            <td class="col-2">{{ item.user}}</td>
+                                                                            <td class="col-2">{{ item.response}}</td>
+                                                                            <td class="col-2">{{ item.evidence}}</td>
+                                                                            <td class="col-2">{{ item.duedate |
+                                                                                amDateFormat: 'DD-MM-YYYY' }}</td>
+                                                                        </tr>
+                                                                        <tr
+                                                                            *ngIf="loadingData === false && decisionSupportAuditHistoryList.length === 0 ">
+                                                                            <td class="col-12" align='center'>
+                                                                                {{'NO_RECORDS_FOUND' | translate}}</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </as-split-area>
+                                                            </as-split>
+
+                                                            <tfoot>
+                                                                <tr role="row">
+                                                                    <div class="d-flex justify-content-between p-2">
+                                                                        <ngb-pagination
+                                                                            [collectionSize]="decisionSupportAuditHistoryList.length"
+                                                                            [(page)]="page" [pageSize]="pageSize"
+                                                                            size="sm">
+                                                                        </ngb-pagination>
+
+                                                                        <select class="custom-select"
+                                                                            style="width: auto" [(ngModel)]="pageSize">
+                                                                            <option value="10">10 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                            <option value="20">20 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                            <option value="50">50 {{'ITEMS_PER_PAGE' |
+                                                                                translate}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
+                                                        <table *ngIf="docVersionHistory"
+                                                        class="table table-striped table-bordered dataTable mb-2 inside-table"
+                                                        role="grid" style="width: 100%;">
+                                                        <thead>
+                                                            <tr role="row">
+                                                                <th (click)="doSort('activity')" class="col-2 link">
+                                                                    <i *ngIf="lastSortCol === 'activity'"
+                                                                        class="pull-right fa"
+                                                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                    {{'REF_HISTORY_ACTIVITY' | translate}}
+                                                                </th>
+                                                                <th (click)="doSort('reason')" class="col-2 link">
+                                                                    <i *ngIf="lastSortCol === 'reason'"
+                                                                        class="pull-right fa"
+                                                                        [ngClass]="{ 'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false }"></i>
+                                                                    {{'REF_HISTORY_REASON' | translate}}
+                                                                </th>
+                                                                <th (click)="doSort('user')" class="col-2 link">
+                                                                    <i *ngIf="lastSortCol === 'user'"
+                                                                        class="pull-right fa"
+                                                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                    {{'REF_HISTORY_USER' | translate}}
+                                                                </th>
+                                                                <th (click)="doSort('response')" class="col-2 link">
+                                                                    <i *ngIf="lastSortCol === 'response'"
+                                                                        class="pull-right fa"
+                                                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                    {{'REF_HISTORY_USER_RESPONSE' | translate}}
+                                                                </th>
+                                                                <th (click)="doSort('evidence')" class="col-2 link">
+                                                                    <i *ngIf="lastSortCol === 'evidence'"
+                                                                        class="pull-right fa"
+                                                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                    {{'REF_HISTORY_EVIDENCE' | translate}}
+                                                                </th>
+                                                                <th (click)="doSort('duedate')" class="col-2 link">
+                                                                    <i *ngIf="lastSortCol === 'duedate'"
+                                                                        class="pull-right fa"
+                                                                        [ngClass]="{'fa-chevron-down': sortAsc, 'fa-chevron-up': sortAsc === false}"></i>
+                                                                    {{'REF_HISTORY_DUEDATE' | translate}}
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <as-split direction="vertical"
+                                                            class="split-minus-header inside-footer">
+                                                            <as-split-area [size]="25">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td *ngIf="loadingData" class="col-12"
+                                                                            align='center'>
+                                                                            <img
+                                                                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr *ngFor="let item of docVersionHistoryList"
+                                                                       >
+                                                                        <td class="col-2">{{ item.activity }}</td>
+                                                                        <td class="col-2">{{ item.reason}}</td>
+                                                                        <td class="col-2">{{ item.user}}</td>
+                                                                        <td class="col-2">{{ item.response}}</td>
+                                                                        <td class="col-2">{{ item.evidence}}</td>
+                                                                        <td class="col-2">{{ item.duedate |
+                                                                            amDateFormat: 'DD-MM-YYYY' }}</td>
+                                                                    </tr>
+                                                                    <tr
+                                                                        *ngIf="loadingData === false && docVersionHistoryList.length === 0 ">
+                                                                        <td class="col-12" align='center'>
+                                                                            {{'NO_RECORDS_FOUND' | translate}}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </as-split-area>
+                                                        </as-split>
+
+                                                        <tfoot>
+                                                            <tr role="row">
+                                                                <div class="d-flex justify-content-between p-2">
+                                                                    <ngb-pagination
+                                                                        [collectionSize]="docVersionHistoryList.length"
+                                                                        [(page)]="page" [pageSize]="pageSize"
+                                                                        size="sm">
+                                                                    </ngb-pagination>
+
+                                                                    <select class="custom-select"
+                                                                        style="width: auto" [(ngModel)]="pageSize">
+                                                                        <option value="10">10 {{'ITEMS_PER_PAGE' |
+                                                                            translate}}</option>
+                                                                        <option value="20">20 {{'ITEMS_PER_PAGE' |
+                                                                            translate}}</option>
+                                                                        <option value="50">50 {{'ITEMS_PER_PAGE' |
+                                                                            translate}}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+                                    <li ngbNavItem>
+                                        <a ngbNavLink>{{'REF_PATIENT_DETAIL_MESSAGES' | translate}}</a>
+                                        <ng-template ngbNavContent>
+                                            <as-split direction="vertical" class="inside-footer-messages">
+                                                <as-split-area [size]="75">
+
+                                                    <div class="flexBox border-left-info shadow">
+                                                        <div class="sidebar-box ">
+                                                            <as-split direction="horizontal" [useTransition]="true"
+                                                                (gutterClick)="onGutterClick($event)"
+                                                                (dragEnd)="onDragEnd($event)">
+                                                                <as-split-area [size]="40"
+                                                                    [order]="areas[0].order">
+                                                                    <as-split direction="vertical">
+                                                                        <as-split-area>
+
+<div class="grid">
+                                          <div class="row m-0 bg-grey p-1">
+                                            <div class="col-10 mb-2 p-0 pt-1 ">
+                                                <input type="text" class="form-control" placeholder="{{'REF_MESSAGES_SEARCH_PLACEHOLDER' | translate}}">
+                                            </div>
+                                            <div class="col-2 mb-2 p-0 pt-1"> <img class="svg" width="30" src="assets/images/icon/axon/add.svg"/></div>
+                                          </div>
+                                          <div class="p-2">
+                                            <form [formGroup]="messageRadioGroupForm">
+                                                <div class="btn-group btn-group-toggle" ngbRadioGroup name="messageRadioGroupForm" formControlName="messageRadioGroupForm">
+                                                  <label ngbButtonLabel class="btn-messages">
+                                                    <input ngbButton type="radio" value="recent"> Recent
+                                                  </label>
+                                                  <label ngbButtonLabel class="btn-messages">
+                                                    <input ngbButton type="radio" value="unread"> Unread
+                                                  </label>
+                                                  <label ngbButtonLabel class="btn-messages">
+                                                    <input ngbButton type="radio" value="groups"> Groups
+                                                  </label>
+                                                </div>
+                                              </form>
+
+                                        </div>
+                                    </div>
+                                    <as-split direction="vertical" class="split-minus-header inside-footer">
+                                        <as-split-area [size]="25">
+                                    <div class="grid messagesList" *ngFor="let message of messages" >
+                                        <button class="btn messageItem">
+                                        <table cellpadding="0" cellspacing="0" class="w-100" >
+                                            <tr>
+                                                <td class="person"><img class="svg" width="30" src="assets/images/icon/axon/person1.svg" /></td>
+                                                <td>
+                                                <table cellpadding="0" cellspacing="0" class="w-100">
+                                                    <tr>
+                                                        <td colspan="2" class="user p-0 pb-1">{{ message.user }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-0"><span>{{ message.msg }}</span></td>
+                                                        <td class="time p-0">{{ message.createdAt | date:'short' }}</td>
+                                                    </tr>
+                                                </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </button>
+                                    </div>
+                                </as-split-area>
+                            </as-split>
+                                                </as-split-area>
+                                            </as-split>
+                                        </as-split-area>
+                                        <as-split-area [size]="60" [order]="areas[1].order">
+                                            <div class="row m-2" *ngFor="let message of messages" #content>
+
+                                                <div *ngIf="message.user !== currentUser"
+                                                    class="col-9 message other-message">
+                                                    <b>{{ message.user }}</b><br>
+                                                    <span>{{ message.msg }}</span>
+                                                    <img src={{ message.img }} />
+                                                    <div class="time" text-right><br>{{ message.createdAt |
+                                                        date:'short' }}</div>
+                                                </div>
+
+                                                <div *ngIf="message.user === currentUser"
+                                                    class="col-9 offset-3 message my-message">
+                                                    <b>{{ message.user }}</b><br>
+                                                    <span>{{ message.msg }}</span>
+                                                    <img src={{ message.img }} />
+                                                    <div class="time" text-right><br>{{ message.createdAt |
+                                                        date:'short' }}</div>
+                                                </div>
+                                            </div>
+
+                                        </as-split-area>
+                                    </as-split>
+                                </div>
+                            </div>
+
+                                                </as-split-area>
+                                            </as-split>
+
+                                            <div class="nav_buttons">
+                                                <div class="bg-light">
+                                                    <div class="row p-0 m-0" align-items-center>
+                                                        <div class="col-10">
+                                                            <div class="form-group mt-2">
+                                                                <textarea class="form-control" rows="3"
+                                                                    placeholder="{{'WRITE_MESSAGE' | translate}}"
+                                                                    id="comment"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2 align-self-center">
+                                                            <button [disabled]="newMsg === ''"
+                                                                class="msg-btn btn-light btn-clear btn-block "
+                                                                (click)="sendMessage()">
+                                                                <i class="fas fa-paper-plane text-primary fa-3x"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </li>
+
+                                </ul>
+                                <div [ngbNavOutlet]="nav"></div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </as-split-area>
+        </as-split>
+    </as-split-area>
+</as-split>

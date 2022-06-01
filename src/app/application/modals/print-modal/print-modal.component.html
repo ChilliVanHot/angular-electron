@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4 class="modal-title justify-content-center w-100 text-center">{{'PRINTER_HEADING' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="doCancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <div class="w-100 pr-0 justify-content-around">
+        <div>
+            <label for="type" class="control-label text-left">{{'PRINTER_SELECT' | translate}}: </label>
+        </div>
+    </div>
+    <div ngbDropdown class="d-inline-block w-100">
+        <button class="btn btn-outline-primary w-100 dropdownToggle" ngbDropdownToggle> {{ selectedPrinter.name }} </button>
+
+        <div ngbDropdownMenu aria-labelledby="dropdown" class="w-100 ">
+            <button ngbDropdownItem *ngFor="let printer of printerList" class=" w-100" text-left (click)="selectedPrinter = printer">
+                {{ printer.name }}
+            </button>
+        </div>
+    </div>
+
+
+    <!-- <div class="" *ngIf="">
+            <div class="" >
+                <p class="dark">{{'PRINTER_ERROR' | translate}}</p>
+            </div>
+        </div> -->
+</div>
+
+<div class="modal-footer">
+
+    <button class="btn btn-success" (click)="doPrint()">
+        PRINT
+    </button>
+    &nbsp;
+    <button type="button" class="btn  btn-outline-dark" (click)="doCancel()">
+        {{'CANCEL_BUTTON' | translate}}
+    </button>
+
+</div>

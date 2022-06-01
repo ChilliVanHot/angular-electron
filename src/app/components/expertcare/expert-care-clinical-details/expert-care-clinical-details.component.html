@@ -1,0 +1,48 @@
+<!-- Content Row -->
+<div class="row mt-0 mb-4">
+    <div class="col bg-light pt-2" >
+        <h6 >{{'EXPERTCARE_PATIENT_DETAILS' | translate}} | </h6>
+    </div>
+</div>
+<div class="row border-bottom mb-2">
+    <div class="col text-primary">
+        <h3>{{'EXPERTCARE_CLINICAL_DETAILS' | translate}}</h3>
+    </div>
+    <div class="col pull-right">
+        <button type="button" class="btn btn-primary btn-sm question-btn"><i
+                class="fa fa-question fa-2x text-gray-100 "></i></button>
+    </div>
+</div>
+<div class="row mt-0">
+      <div class="card-body p-3">
+                <div class="card" *ngFor="let item of listOne">
+                    <div class="card-header bg-medium p-0 pt-1 pb-1 text-primary" >
+                            <div class="row m-2">
+                       <div class="col-3">{{item.col1}}</div>
+                       <div class="col-6">{{item.col2}}</div>
+                       <div class="col-3">{{item.col3}}</div>
+                       </div>
+                    </div>
+                        <div class="card-body p-0">
+                            <div class="row m-2" *ngFor="let child of item.children">
+                                        <div class="col-3">{{child.name}}</div>
+                                        <div class="col-6">{{child.remarks}}</div>
+                                        <div class="col-3"><div class="checkbox" >
+                                                <label><input type="checkbox" value=""></label>
+                                            </div></div>
+
+                            </div>
+                        </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+        <div class="col pull-right">
+
+            <button type="button" class="btn btn-primary btn-sm"
+                routerLink="/expert-care/expert-care-medication">{{'EXPERTCARE_CLINICAL_DETAILS_REVIEWED' | translate}}
+                <i class="fa fa-arrow-circle-o-right text-gray-300"></i></button>
+        </div>
+    </div>

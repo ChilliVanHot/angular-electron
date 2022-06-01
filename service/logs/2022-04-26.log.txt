@@ -1,0 +1,56 @@
+2022-04-26T12:07:25.7622956Z: [System.IO.FileNotFoundException] Error initing local file: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json ##Could not find file 'C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json'.##    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   at System.IO.StreamReader..ctor(String path)
+   at AxonIm1Service.Models.ServiceConfiguration.UpdateCfgFromFile(String FullFilePath, ServiceConfiguration Config) in C:\Users\User\source\repos\Axon - Thin Client\TransactionService\Models\ServiceConfiguration.cs:line 102
+2022-04-26T12:07:25.9162976Z: Starting transaction service.
+2022-04-26T12:07:26.0292967Z: Using config path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\ -> C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default
+2022-04-26T12:07:26.0302965Z: Loading (Is Upgrading: False) Dll Path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll
+2022-04-26T12:07:26.4162971Z: Loaded [Transaction.Service.Im1Control] from [C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll] version [] into [Im1IntegrationDll-]
+2022-04-26T12:07:26.4652964Z: Binding WebSocket to: ws://127.0.0.1:16030
+2022-04-26T12:07:26.5232970Z: Fleck [ws] Info Log: Server started at ws://127.0.0.1:16030 (actual port 16030)
+2022-04-26T12:07:26.5522971Z: Binding WebSocket to: wss://127.0.0.1:16031
+2022-04-26T12:07:26.5722955Z: [System.ArgumentException] ##Given WSS certificate file not found at: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\##    at AxonIm1Service.SocketServer.StartAndInit(String ServerIp, String ServerPort, String CertificateFilename, String CertificatePassword, Func`2 connectedDelegate, Func`2 disconnectedDelegate, Func`2 clientMessageDelegate) in C:\Users\User\source\repos\Axon - Thin Client\TransactionService\SocketServer.cs:line 145
+   at AxonIm1Service.ServiceControl.StartEndPoints() in C:\Users\User\source\repos\Axon - Thin Client\TransactionService\ServiceControl.cs:line 425
+2022-04-26T12:07:26.5772964Z: Failed to start endpoints!
+2022-04-26T12:07:26.6882958Z: Stopping queue control...
+2022-04-26T12:07:26.7972951Z: Stopped queue control! Waiting for thread(s) to stop...
+2022-04-26T12:07:27.8142945Z: Active server instance to dispose...
+2022-04-26T12:07:27.8382959Z: Active server instance disposed.
+2022-04-26T12:07:27.8412970Z: Transaction service running in debug/console mode, press any key to stop.
+2022-04-26T12:07:34.3502948Z: Active server instance to dispose...
+2022-04-26T12:07:34.3512944Z: Active server instance disposed.
+2022-04-26T12:07:34.3542937Z: Stopped transaction service.
+2022-04-26T12:07:48.4882969Z: Config file read OK: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json
+2022-04-26T12:07:48.5113146Z: Starting transaction service.
+2022-04-26T12:07:48.6232955Z: Using config path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\ -> C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default
+2022-04-26T12:07:48.6362962Z: Loading (Is Upgrading: False) Dll Path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll
+2022-04-26T12:07:48.6502971Z: Loaded [Transaction.Service.Im1Control] from [C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll] version [] into [Im1IntegrationDll-]
+2022-04-26T12:07:48.6832957Z: Binding WebSocket to: ws://127.0.0.1:16030
+2022-04-26T12:07:48.7372954Z: Fleck [ws] Info Log: Server started at ws://127.0.0.1:16030 (actual port 16030)
+2022-04-26T12:07:48.7832960Z: Binding WebSocket to: wss://127.0.0.1:16031
+2022-04-26T12:07:48.8122956Z: [System.ArgumentException] ##Given WSS certificate file not found at: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\##    at AxonIm1Service.SocketServer.StartAndInit(String ServerIp, String ServerPort, String CertificateFilename, String CertificatePassword, Func`2 connectedDelegate, Func`2 disconnectedDelegate, Func`2 clientMessageDelegate) in C:\Users\User\source\repos\Axon - Thin Client\TransactionService\SocketServer.cs:line 145
+   at AxonIm1Service.ServiceControl.StartEndPoints() in C:\Users\User\source\repos\Axon - Thin Client\TransactionService\ServiceControl.cs:line 425
+2022-04-26T12:07:48.8222948Z: Failed to start endpoints!
+2022-04-26T12:07:48.9412962Z: Stopping queue control...
+2022-04-26T12:07:49.0983489Z: Stopped queue control! Waiting for thread(s) to stop...
+2022-04-26T12:07:50.1113542Z: Active server instance to dispose...
+2022-04-26T12:07:50.1143531Z: Active server instance disposed.
+2022-04-26T12:07:50.1893528Z: Transaction service running in debug/console mode, press any key to stop.
+2022-04-26T12:12:07.4493607Z: Config file read OK: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\default.json
+2022-04-26T12:12:07.4693625Z: Starting transaction service.
+2022-04-26T12:12:07.5823615Z: Using config path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\ -> C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default
+2022-04-26T12:12:07.5883606Z: Loading (Is Upgrading: False) Dll Path: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll
+2022-04-26T12:12:07.6073609Z: Loaded [Transaction.Service.Im1Control] from [C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\dlls\default\Transaction.dll] version [] into [Im1IntegrationDll-]
+2022-04-26T12:12:07.6353613Z: Binding WebSocket to: ws://127.0.0.1:16030
+2022-04-26T12:12:07.6983621Z: Fleck [ws] Info Log: Server started at ws://127.0.0.1:16030 (actual port 16030)
+2022-04-26T12:12:07.7323635Z: Binding WebSocket to: wss://127.0.0.1:16031
+2022-04-26T12:12:07.7343653Z: Using (pwd: localhost) certificate: C:\Users\User\source\repos\Axon - Thin Client\AxonIm1Client\bin\Debug\certs\dxs_axon_cert_lh.pfx
+2022-04-26T12:12:07.8603605Z: Fleck [wss] Info Log: Server started at wss://127.0.0.1:16031 (actual port 16031)
+2022-04-26T12:12:07.9233610Z: Service Timer(s) started!
+2022-04-26T12:12:07.9243607Z: Transaction service running in debug/console mode, press any key to stop.
+2022-04-26T12:12:38.0103595Z: Status checked:
+{"atTime":"2022-04-26T14:12:37.8843607+02:00","isIntegrationActive":false,"statusID":1,"onVersion":""}
+2022-04-26T12:13:08.0233615Z: Status checked:
+{"atTime":"2022-04-26T14:13:08.0233615+02:00","isIntegrationActive":false,"statusID":1,"onVersion":""}

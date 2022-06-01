@@ -1,0 +1,86 @@
+<div class="flexBox border-left-info shadow">
+    <div class="sidebar-box">
+        <as-split direction="horizontal" [useTransition]="true" (gutterClick)="onGutterClick($event)" (dragEnd)="onDragEnd($event)">
+            <as-split-area [size]="areas[0].size" order="areas[0].order">
+
+                <div ref="sidebar" class="accordion builder-sidebar builder-sidebar_scroll" id="settings-sidemenu">
+                    <div routerLink="/settings/users" routerLinkActive="active" ref="group-panel-users"
+                        class="card form-builder-panel">
+                        <div id="heading-users" class="card-header form-builder-group-header p-0">
+                            <h5 class="mb-0 mt-0">
+                                <button ref="sidebar-anchor" aria-controls="group-users" aria-expanded="false"
+                                    type="button" class="btn btn-block builder-group-button accordion-btn">
+                                    <i style="margin-right: 5px;" class="fa fa-comment text-primary"></i>
+                                    {{'SETTINGS_USERS' | translate}}
+                                </button>
+                            </h5>
+                        </div>
+                    </div>
+                    <div routerLink="/settings/organization" routerLinkActive="active" ref="group-panel-organizations"
+                        class="card form-builder-panel">
+                        <div id="heading-organizations" class="card-header form-builder-group-header p-0">
+                            <h5 class="mb-0 mt-0">
+                                <button ref="sidebar-anchor" aria-controls="group-organizations" aria-expanded="false"
+                                    type="button" class="btn btn-block builder-group-button accordion-btn">
+                                    <i style="margin-right: 5px;" class="fa fa-bullhorn text-primary"></i>
+                                    {{'SETTINGS_ORGANIZATIONS' | translate}}
+                                </button>
+                            </h5>
+                        </div>
+                    </div>
+                    <div routerLink="/settings/devices" routerLinkActive="active" ref="group-panel-devices"
+                        class="card form-builder-panel">
+                        <div id="heading-devices" class="card-header form-builder-group-header p-0">
+                            <h5 class="mb-0 mt-0">
+                                <button ref="sidebar-anchor" aria-controls="group-devices" aria-expanded="false"
+                                    type="button" class="btn btn-block builder-group-button accordion-btn">
+                                    <i style="margin-right: 5px;" class="fa fa-exclamation-triangle text-primary"></i>
+                                    {{'SETTINGS_DEVICES' | translate}}
+                                </button>
+                            </h5>
+                        </div>
+                    </div>
+                    <div [routerLink]="['application/neuron-route']" routerLinkActive="active" ref="group-panel-test"
+                    class="card form-builder-panel">
+                    <div id="heading-test" class="card-header form-builder-group-header p-0">
+                        <h5 class="mb-0 mt-0">
+                            <button (click)="setSideMenu('neuron-route')" ref="sidebar-anchor" aria-controls="group-test" aria-expanded="false"
+                            type="button" class="btn btn-block builder-group-button accordion-btn">
+                            <i style="margin-right: 5px;" class="fa fa-exclamation-triangle text-primary"></i>
+                                Neuron
+                                </button>
+                            </h5>
+                        </div>
+                    </div>
+                    <div [routerLink]="['application/thin-client-route']" routerLinkActive="active" ref="group-panel-test" class="card form-builder-panel">
+                    <div id="heading-test" class="card-header form-builder-group-header p-0">
+                        <h5 class="mb-0 mt-0">
+                            <button (click)="setSideMenu('thin-client-route')" ref="sidebar-anchor" aria-controls="group-test" aria-expanded="false"
+                            type="button" class="btn btn-block builder-group-button accordion-btn">
+                            <i style="margin-right: 5px;" class="fa fa-exclamation-triangle text-primary"></i>
+                                Thin Client
+                                </button>
+                            </h5>
+                        </div>
+                    </div>
+                    <div [routerLink]="['application/grpc-demo']" routerLinkActive="active" ref="group-panel-test" class="card form-builder-panel">
+                        <div id="heading-test" class="card-header form-builder-group-header p-0">
+                            <h5 class="mb-0 mt-0">
+                                <button (click)="setSideMenu('grpc-demo')" ref="sidebar-anchor" aria-controls="group-test" aria-expanded="false"
+                                type="button" class="btn btn-block builder-group-button accordion-btn">
+                                <i style="margin-right: 5px;" class="fa fa-exclamation-triangle text-primary"></i>
+                                    GRPC Demo
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                </div>
+            </as-split-area>
+
+            <as-split-area [size]="areas[1].size" order="areas[1].order">
+                <router-outlet></router-outlet>
+
+            </as-split-area>
+        </as-split>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+syntax = "proto3";
+//
+option csharp_namespace = "Neuron";
+//
+package menus.v1;
+//
+service Menus {
+  rpc GetMenus(MenusEmpty) returns (MenusReply);
+  rpc GetMenusStream(MenusEmpty) returns (stream MenuItem);
+}
+
+message MenusReply{
+  repeated MenuItem menus = 1;
+}
+// Menu items model
+message MenuItem {
+  string url = 1;
+  string name = 2;
+  string iconClass = 3;
+}
+// Empty Site model
+message MenusEmpty {}

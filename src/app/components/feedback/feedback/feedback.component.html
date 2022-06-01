@@ -1,0 +1,55 @@
+<!-- Content Row -->
+<div class="row">
+    <div class="col-xl-12">
+        <div class="py-2 px-2 mb-0">
+            <h5>Help Desk</h5>
+        </div>
+        <div class="card border-left-info shadow py-50 mb-3">
+            <form class="form-horizontal search-form" [formGroup]="feedbackForm" (ngSubmit)="doSubmit(feedbackForm)">
+                <div class="row">
+                    <div class="col-xs-12 col-md-10 offset-md-1">
+                        <div class="form-group px-2">
+                            <div>
+                                <label for="input-subject" class="control-label">Email Address:</label>
+                                <input class="form-control" formControlName="emailAddress" id="input-subject" type="email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-10 offset-md-1">
+                        <div class="form-group px-2">
+                            <div>
+                                <label for="input-subject" class="control-label">Subject:</label>
+                                <input class="form-control" formControlName="subject" id="input-subject" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-10 offset-md-1">
+                        <div class="form-group px-2">
+                            <div>
+                                <textarea class="form-control" rows="12"
+                                    placeholder="Write a message here..."
+                                    formControlName="message" id="input-message" id="comment">
+                                </textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-10 offset-md-1">
+                        <div class="px-2">
+                            <button type="submit" class="btn btn-success search-button"
+                                [disabled]="!feedbackForm.valid">
+                                Submit
+                            </button>
+
+                            <!-- <button type="button" class="btn btn-success" (click)="openModalDevice(templateInsert)">Add New Device</button> -->
+                            <img *ngIf="loading"
+                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Content Row -->

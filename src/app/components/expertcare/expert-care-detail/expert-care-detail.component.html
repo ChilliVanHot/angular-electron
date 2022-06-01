@@ -1,0 +1,269 @@
+<!-- Content Row -->
+<div class="row mt-0 mb-4">
+    <div class="col bg-light pt-2">
+        <h6>{{'EXPERTCARE_PATIENT_DETAILS' | translate}} | </h6>
+    </div>
+</div>
+
+<div class="row border-bottom mb-4">
+    <div class="col text-primary">
+        <h3>{{'EXPERTCARE_CLINICAL_PARAMS' | translate}}</h3>
+    </div>
+    <div class="col pull-right">
+
+        <button type="button" class="btn btn-outline-primary btn-sm">
+            {{'EXPERTCARE_CLEAR' | translate}} <i class="fa fa-close text-gray-300"></i>
+        </button>
+        &nbsp;
+        <button type="button" class="btn btn-primary btn-sm" routerLink="/expert-care/expert-care-clinical-details">
+            {{'EXPERTCARE_SUBMIT' | translate}} <i class="fa fa-arrow-circle-o-right text-gray-300"></i>
+        </button>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6 mb-4">
+
+        <div class="row mb-4">
+            <div class="col text-primary">
+                <div class="mb-0">
+                    <p class="mb-1">{{'EXPERTCARE_PATIENT_RECORD_STATUS' | translate}}</p>
+                </div>
+                <div class="row ">
+                    <div class="col-sm-9 pr-0">
+                        <select class="form-control">
+                            <option value="" selected disabled>{{'EXPERTCARE_PATIENT_IDENTIFIER' | translate}}</option>
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3 pt-1 pull-right">
+                        <button type="button" class=" btn btn-primary btn-sm"
+                            routerLink="/expert-care/expert-care-detail">
+                            {{'EXPERTCARE_GET_RECORD' | translate}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="accordion">
+
+            <div class="card">
+                <div class="card-header" id="heading-1">
+                    <h5 class="mb-0" (click)="doTogglePatientDetails()">
+                        <a role="button">
+                            {{'EXPERTCARE_PATIENT_DETAILS_LOWER' | translate}}
+                            <i class="pull-right fa"
+                                [ngClass]="{'fa-minus': isOpenPatientDetails, 'fa-plus': isOpenPatientDetails == false}"></i>
+                        </a>
+                    </h5>
+                </div>
+                <div *ngIf="isOpenPatientDetails">
+                    <div class="card-body p-0">
+                        <div class="row m-0">
+                            <div class="col-md-3 p-3">
+                                <p>{{'EXPERTCARE_AGE_RANGE' | translate}}</p>
+                                <div class="radio pb-2">
+                                    <label><input type="radio" name="optradio"> 16 to 54 yrs</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Over 55 yrs</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3">
+                                <p>{{'EXPERTCARE_GENDER' | translate}}</p>
+                                <div class="radio pb-2">
+                                    <label><input type="radio" name="optradio"> Male</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Female</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3">
+                                <p>{{'EXPERTCARE_ETHNICITY' | translate}}</p>
+                                <div class="radio pb-2">
+                                    <label><input type="radio" name="optradio"> African/Caribbean</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Not African/Caribbean</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3 p-3 br-0">
+                                <p>{{'EXPERTCARE_BLOOD_PRESSURE' | translate}}</p>
+                                <div class="radio pb-2">
+                                    <label><input type="radio" name="optradio"> Raised</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="optradio"> Normal</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="heading-3">
+                    <h5 class="mb-0" (click)="doTogglePathwayComorbidities()">
+                        <a role="button">
+                            {{'EXPERTCARE_PATHWAY_COMORBIDITIES' | translate}}
+                            <i class="pull-right fa"
+                                [ngClass]="{'fa-minus': isOpenPathwayComorbidities, 'fa-plus': isOpenPathwayComorbidities == false}"></i>
+                        </a>
+                    </h5>
+                </div>
+                <div class="card-body p-0" *ngIf="isOpenPathwayComorbidities">
+                    <div class="row m-0">
+                        <div class="col-sm-3 m-0 col-lines" *ngFor="let item of pathwayComorbidities">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value=""> {{ item.name }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header" id="heading-4">
+                    <h5 class="mb-0" (click)="doToggleNonPathwayComorbidities()">
+                        <a role="button" class="text-primary">
+                            {{'EXPERTCARE_NON_PATHWAY_COMORBIDITIES' | translate}}
+                            <i class="pull-right fa"
+                                [ngClass]="{'fa-minus': isOpenNonPathwayComorbidities, 'fa-plus': isOpenNonPathwayComorbidities == false}"></i>
+                        </a>
+                    </h5>
+                </div>
+                <div class="card-body" *ngIf="isOpenNonPathwayComorbidities">
+                    <div class="card" *ngFor="let item of nonPathwayComorbidities">
+                        <div class="card-header" (click)="toggleNonPathwayComorbilities(item)">
+                            <h5 class="mb-0">
+                                <a class="collapsed" role="button">
+                                    {{item.section}}
+                                    <i class="pull-right fa"
+                                        [ngClass]="{'fa-minus': item.isOpen, 'fa-plus': !item.isOpen }"></i>
+                                </a>
+                            </h5>
+                        </div>
+                        <div *ngIf="item.isOpen" class="card-body p-0">
+                            <div class="row m-0">
+                                <div class="col-md-4 p-3" *ngFor="let child of item.children">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" value=""> {{ child.name }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-6 mb-4">
+        <div id="accordion2">
+            <div class="card">
+                <div class="card-header" id="heading-5">
+                    <h5 class="mb-0" (click)="doToggleCurrentHypertensionTreatment()">
+                        <a role="button" class="text-primary">
+                            {{'EXPERTCARE_HYPERTENSION_TREATMENT' | translate}}
+                            <i class="pull-right fa"
+                                [ngClass]="{'fa-minus': isOpenCurrentHypertensionTreatment, 'fa-plus': isOpenCurrentHypertensionTreatment == false}"></i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapse-5">
+                    <div class="card-body" *ngIf="isOpenCurrentHypertensionTreatment">
+
+                        <div id="accordion-5">
+                            <div class="card" *ngFor="let item of currentHypertensionTreatment">
+                                <div class="card-header" id="heading-1-5"
+                                    (click)="toggleCurrentHypertensionTreatment(item)">
+                                    <h5 class="mb-0">
+                                        <a class="collapsed" role="button">
+                                            {{item.section}}
+                                            <i class="pull-right fa"
+                                                [ngClass]="{'fa-minus': item.isOpen2, 'fa-plus': !item.isOpen2 }"></i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div *ngIf="item.isOpen2" class="card-body p-0">
+                                    <div class="row m-0">
+                                        <div class="col-md-4 p-3" *ngFor="let child2 of item.children">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value=""> {{child2.name}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="card">
+                <div class="card-header" id="heading-6">
+                    <h5 class="mb-0" (click)="doToggleOtherRelevantMedication()">
+                        <a role="button" class="text-primary">
+                            {{'EXPERTCARE_OTHER_MEDS' | translate}}
+                            <i class="pull-right fa"
+                                [ngClass]="{'fa-minus': isOpenOtherRelevantMedication, 'fa-plus': isOpenOtherRelevantMedication == false}"></i>
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapse-6">
+                    <div class="card-body" *ngIf="isOpenOtherRelevantMedication">
+
+                        <div id="accordion-5">
+                            <div class="card" *ngFor="let item of otherRelevantMedication">
+                                <div class="card-header" id="heading-1-6" (click)="toggleotherRelevantMedication(item)">
+                                    <h5 class="mb-0">
+                                        <a class="collapsed" role="button">
+                                            {{item.section}}
+                                            <i class="pull-right fa"
+                                                [ngClass]="{'fa-minus': item.isOpen3, 'fa-plus': !item.isOpen3 }"></i>
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div *ngIf="item.isOpen3" class="card-body p-0">
+                                    <div class="row m-0">
+                                        <div class="col-md-4 p-3" *ngFor="let child2 of item.children">
+                                            <div class="checkbox">
+                                                <label><input type="checkbox" value=""> {{child2.name}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col pull-right">
+
+                    <button type="button" class="btn btn-outline-primary btn-sm">
+                        {{'EXPERTCARE_CLEAR' | translate}} <i class="fa fa-close text-gray-300"></i>
+                    </button>
+                    &nbsp;
+                    <button type="button" class="btn btn-primary btn-sm"
+                        routerLink="/expert-care/expert-care-clinical-details">
+                        {{'EXPERTCARE_SUBMIT' | translate}} <i class="fa fa-arrow-circle-o-right text-gray-300"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Content Row -->
